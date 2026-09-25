@@ -159,18 +159,18 @@ app.post('/api/auth/register', (req, res) => {
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `);
 
-    const eqVal = deposit * 0.6;
+    const eqVal = deposit * 0.5;
     const fiVal = deposit * 0.3;
-    const altVal = deposit * 0.1;
+    const altVal = deposit * 0.2;
 
-    insertPortfolio.run(userId, 'Equities', 'Diversified Global Equity Index', 60, eqVal, eqVal, 3.4);
-    insertPortfolio.run(userId, 'Fixed Income', 'Short Duration High-Yield Bond Fund', 30, fiVal, fiVal, 1.2);
-    insertPortfolio.run(userId, 'Alternative', 'Physical Gold & Clean Infrastructure', 10, altVal, altVal, 2.1);
+    insertPortfolio.run(userId, 'Mutual Funds', 'Diversified Multi-Cap Mutual Fund Portfolio', 50, eqVal, eqVal, 3.4);
+    insertPortfolio.run(userId, 'Bonds', 'Sovereign Gold Bonds & 54EC Capital Gain Securities', 30, fiVal, fiVal, 1.2);
+    insertPortfolio.run(userId, 'Fixed Deposit', 'Corporate & Bank High-Yield Fixed Deposits', 20, altVal, altVal, 2.1);
 
     // Initial deposit transaction
     const insertTx = db.prepare(`
       INSERT INTO transactions (tx_code, user_id, type, asset_class, amount, date, status, description)
-      VALUES (?, ?, 'Deposit', 'Cash', ?, ?, 'Completed', 'Initial wealth management account funding')
+      VALUES (?, ?, 'SIP / Deposit', 'Cash / Bank', ?, ?, 'Completed', 'Initial wealth management account funding')
     `);
     const today = new Date().toISOString().split('T')[0];
     insertTx.run(`TXN-${Math.floor(1000 + Math.random() * 9000)}`, userId, deposit, today);
@@ -237,6 +237,30 @@ app.post('/api/auth/logout', (req, res) => {
 // -------------------------------------------------------------
 // PUBLIC LEAD CAPTURE & CONTACT
 // -------------------------------------------------------------
+
+// GET /api/company-info
+app.get('/api/company-info', (req, res) => {
+  res.json({
+    business_name: 'Sukhmira Investment Services LLP',
+    business_type: 'Financial Investment services',
+    phones: ['+91 9152579597', '+91 9152635363'],
+    phone_display: '9152579597 / 9152635363',
+    email: 'sukhmirainvestment@gmail.com',
+    address: 'Shop No.1, Plot No.55, Sector 8A, Shree Yashashree CHS Ltd. Airoli, Navi Mumbai, 400708',
+    city: 'Navi Mumbai',
+    pincode: '400708',
+    state: 'Maharashtra',
+    country: 'India',
+    services: [
+      'Mutual Funds',
+      'Bonds',
+      'Fixed Deposit',
+      'Insurance',
+      'Unlisted Shares',
+      '54 EC Bonds'
+    ]
+  });
+});
 
 // POST /api/contact
 app.post('/api/contact', (req, res) => {

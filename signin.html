@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Client Sign In & Portal | SIS</title>
-  <meta name="description" content="Sign in or register for the SIS wealth management and portfolio portal.">
+  <title>Client Sign In &amp; Portal | Sukhmira Investment Services LLP</title>
+  <meta name="description" content="Sign in or register for the Sukhmira Investment Services LLP wealth management and portfolio portal.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,20 +12,33 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand-wrapper" href="index.html">
-        <img src="logo.png" alt="SIS logo">
+        <img src="logo.png" alt="Sukhmira Investment Services LLP Logo">
         <div class="brand-info">
           <span class="brand-name">SIS</span>
-          <span class="brand-tagline">Sukhmira Investment Services</span>
+          <span class="brand-tagline">Sukhmira Investment Services LLP</span>
         </div>
       </a>
       <nav class="main-nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
+        <a href="about.html">About Us</a>
+        <div class="nav-dropdown-wrapper">
+          <a href="services.html" class="nav-dropdown-toggle has-dropdown">
+            <span>Services</span> <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="services.html#mutual-funds" class="nav-dropdown-item"><i class="fa-solid fa-chart-pie"></i> Mutual Funds</a>
+            <a href="services.html#bonds" class="nav-dropdown-item"><i class="fa-solid fa-landmark"></i> Bonds</a>
+            <a href="services.html#fixed-deposits" class="nav-dropdown-item"><i class="fa-solid fa-vault"></i> Fixed Deposits</a>
+            <a href="services.html#insurance" class="nav-dropdown-item"><i class="fa-solid fa-shield-halved"></i> Insurance</a>
+            <a href="services.html#unlisted-shares" class="nav-dropdown-item"><i class="fa-solid fa-arrow-trend-up"></i> Unlisted Shares</a>
+            <a href="services.html#54-ec-bonds" class="nav-dropdown-item"><i class="fa-solid fa-receipt"></i> 54 EC Bonds</a>
+          </div>
+        </div>
+        <a href="contact.html">Contact Us</a>
       </nav>
       <button class="menu-toggle" aria-label="Toggle navigation">
         <i class="fa-solid fa-bars"></i>
@@ -47,8 +60,8 @@
             <!-- Sign In Form -->
             <div id="signInContainer">
               <span class="eyebrow"><i class="fa-solid fa-lock"></i> Secure Gateway</span>
-              <h1>Account Sign In</h1>
-              <p class="signin-subtitle">Unified secure portal. Enter your credentials to access your dashboard.</p>
+              <h1>Investor Portal Sign In</h1>
+              <p class="signin-subtitle">Enter your registered credentials to monitor your portfolio and transactions.</p>
               
               <form class="signin-form" id="clientSignInForm">
                 <div class="form-group">
@@ -56,8 +69,8 @@
                   <input 
                     type="text" 
                     id="loginEmail" 
-                    placeholder="e.g. name@domain.com or admin" 
-                    value="john.anderson@email.com"
+                    placeholder="e.g. rajesh.sharma@gmail.com or admin" 
+                    value="rajesh.sharma@gmail.com"
                     required
                   >
                 </div>
@@ -84,14 +97,14 @@
               <div class="admin-demo-info" style="margin-top: 1.5rem;">
                 <p><strong>Quick Demo Testing Credentials:</strong></p>
                 <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
-                  <button type="button" class="button small secondary" id="fillJohnBtn" style="font-size:0.78rem;">
-                    <i class="fa-solid fa-user"></i> Fill Client: John Anderson
+                  <button type="button" class="button small secondary" id="fillRajeshBtn" style="font-size:0.78rem;">
+                    <i class="fa-solid fa-user"></i> Fill Client: Rajesh Sharma
                   </button>
-                  <button type="button" class="button small secondary" id="fillSarahBtn" style="font-size:0.78rem;">
-                    <i class="fa-solid fa-user"></i> Fill Client: Sarah Mitchell
+                  <button type="button" class="button small secondary" id="fillPriyaBtn" style="font-size:0.78rem;">
+                    <i class="fa-solid fa-user"></i> Fill Client: Priya Patel
                   </button>
                   <button type="button" class="button small secondary" id="fillAdminBtn" style="font-size:0.78rem;">
-                    <i class="fa-solid fa-shield"></i> Fill Admin (admin@sis.com)
+                    <i class="fa-solid fa-shield"></i> Fill Admin (sukhmirainvestment@gmail.com)
                   </button>
                 </div>
               </div>
@@ -99,38 +112,38 @@
 
             <!-- Register Form -->
             <div id="registerContainer" style="display: none;">
-              <span class="eyebrow"><i class="fa-solid fa-user-plus"></i> Institutional Onboarding</span>
+              <span class="eyebrow"><i class="fa-solid fa-user-plus"></i> New Client Onboarding</span>
               <h1>Open An Account</h1>
-              <p class="signin-subtitle">Partner with SIS for managed wealth and fiduciary planning.</p>
+              <p class="signin-subtitle">Partner with Sukhmira Investment Services LLP for structured wealth creation.</p>
 
               <form class="signin-form" id="clientRegisterForm">
                 <div class="form-group">
                   <label for="regFullName">Legal Full Name</label>
-                  <input type="text" id="regFullName" placeholder="e.g. Alexandra Vance" required>
+                  <input type="text" id="regFullName" placeholder="e.g. Anand Deshmukh" required>
                 </div>
 
                 <div class="form-group">
                   <label for="regEmail">Email Address</label>
-                  <input type="email" id="regEmail" placeholder="e.g. alexandra@vanceholdings.com" required>
+                  <input type="email" id="regEmail" placeholder="e.g. anand@gmail.com" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="regPhone">Phone Number</label>
-                  <input type="tel" id="regPhone" placeholder="(555) 123-4567">
+                  <label for="regPhone">Contact Mobile Number</label>
+                  <input type="tel" id="regPhone" placeholder="+91 9820000000">
                 </div>
 
                 <div class="form-group">
                   <label for="regRisk">Investment Profile</label>
                   <select id="regRisk">
-                    <option value="Aggressive Growth">Aggressive Growth (High Equity)</option>
-                    <option value="Moderate Growth" selected>Moderate Growth (Balanced)</option>
-                    <option value="Capital Preservation">Capital Preservation (Defensive)</option>
+                    <option value="Aggressive Growth">Aggressive Growth (High Equity &amp; Pre-IPO)</option>
+                    <option value="Moderate Growth" selected>Moderate Growth (Balanced Mutual Funds &amp; FDs)</option>
+                    <option value="Capital Preservation">Capital Preservation (54EC Bonds &amp; Corporate FDs)</option>
                   </select>
                 </div>
 
                 <div class="form-group">
-                  <label for="regDeposit">Initial Portfolio Allocation ($ USD)</label>
-                  <input type="number" id="regDeposit" min="10000" step="5000" value="50000" required>
+                  <label for="regDeposit">Initial Investment / Deposit (₹ INR)</label>
+                  <input type="number" id="regDeposit" min="25000" step="25000" value="100000" required>
                 </div>
 
                 <div class="form-group">
@@ -150,18 +163,18 @@
 
           <!-- Benefits Card -->
           <div class="signin-benefits">
-            <h2>The SIS Advantage</h2>
+            <h2>The Sukhmira Advantage</h2>
             <p style="margin-bottom: 2rem; color: var(--text-secondary);">
-              Exclusive institutional tools designed to protect and amplify wealth across market cycles.
+              Tailored financial strategies designed to protect and amplify wealth across Indian markets.
             </p>
             <div style="display: flex; flex-direction: column; gap: 1.5rem;">
               <div style="display: flex; gap: 1.2rem; align-items: flex-start;">
                 <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: var(--accent-emerald-bg); color: var(--accent-emerald); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
-                  <i class="fa-solid fa-chart-line"></i>
+                  <i class="fa-solid fa-chart-pie"></i>
                 </div>
                 <div>
-                  <h3 style="font-size: 1.1rem; color: #fff;">Daily Mark-to-Market Valuation</h3>
-                  <p style="font-size: 0.9rem;">Real-time performance monitoring across Equities, Fixed Income, and Alternatives.</p>
+                  <h3 style="font-size: 1.1rem; color: #fff;">Multi-Asset Tracking</h3>
+                  <p style="font-size: 0.9rem;">Live valuation across Mutual Funds, Corporate FDs, Government Bonds, Pre-IPO Shares, and 54EC Bonds.</p>
                 </div>
               </div>
 
@@ -170,18 +183,18 @@
                   <i class="fa-solid fa-shield-halved"></i>
                 </div>
                 <div>
-                  <h3 style="font-size: 1.1rem; color: #fff;">Fiduciary Risk Management</h3>
-                  <p style="font-size: 0.9rem;">Hedging models and disciplined asset allocation mapped directly to your risk profile.</p>
+                  <h3 style="font-size: 1.1rem; color: #fff;">Tax Efficiency &amp; 54EC Planning</h3>
+                  <p style="font-size: 0.9rem;">Compliant advisory to save long-term capital gains tax on property sales up to ₹50 Lakhs.</p>
                 </div>
               </div>
 
               <div style="display: flex; gap: 1.2rem; align-items: flex-start;">
                 <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(56, 189, 248, 0.12); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
-                  <i class="fa-solid fa-user-tie"></i>
+                  <i class="fa-solid fa-phone"></i>
                 </div>
                 <div>
-                  <h3 style="font-size: 1.1rem; color: #fff;">Dedicated Wealth Strategist</h3>
-                  <p style="font-size: 0.9rem;">Direct priority access to certified advisors for consultations, rebalancing, and tax efficiency.</p>
+                  <h3 style="font-size: 1.1rem; color: #fff;">Direct Advisory Desk</h3>
+                  <p style="font-size: 0.9rem;">Priority support from our Airoli, Navi Mumbai office via phone (9152579597) and dedicated WhatsApp.</p>
                 </div>
               </div>
             </div>
@@ -193,9 +206,9 @@
 
   <footer class="site-footer">
     <div class="container footer-bottom">
-      <p>&copy; 2026 SIS Sukhmira Investment Services. All rights reserved.</p>
+      <p>&copy; 2026 Sukhmira Investment Services LLP. All rights reserved.</p>
       <div style="display: flex; gap: 1.5rem;">
-        <a href="contact.html" style="font-size: 0.85rem;">Support & Inquiries</a>
+        <a href="contact.html" style="font-size: 0.85rem;">Support &amp; Inquiries</a>
       </div>
     </div>
   </footer>
@@ -225,14 +238,14 @@
         registerContainer.style.display = 'block';
       });
 
-      // Quick Fill Buttons
-      document.getElementById('fillJohnBtn')?.addEventListener('click', () => {
-        document.getElementById('loginEmail').value = 'john.anderson@email.com';
+      // Quick Fill Buttons for newly seeded Indian users
+      document.getElementById('fillRajeshBtn')?.addEventListener('click', () => {
+        document.getElementById('loginEmail').value = 'rajesh.sharma@gmail.com';
         document.getElementById('loginPassword').value = 'password123';
       });
 
-      document.getElementById('fillSarahBtn')?.addEventListener('click', () => {
-        document.getElementById('loginEmail').value = 'sarah.mitchell@email.com';
+      document.getElementById('fillPriyaBtn')?.addEventListener('click', () => {
+        document.getElementById('loginEmail').value = 'priya.patel@gmail.com';
         document.getElementById('loginPassword').value = 'password123';
       });
 
@@ -308,7 +321,7 @@
           if (res.ok) {
             localStorage.setItem('sis_token', data.token);
             localStorage.setItem('sis_user', JSON.stringify(data.user));
-            showToast('Account registered successfully! Welcome to SIS.', 'success');
+            showToast('Account registered successfully! Welcome to Sukhmira Investment Services.', 'success');
 
             setTimeout(() => {
               window.location.href = 'client-dashboard.html';

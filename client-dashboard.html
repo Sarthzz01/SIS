@@ -63,11 +63,14 @@
         </nav>
 
         <div style="margin-top: 2.5rem; padding: 1.2rem; background: rgba(13, 23, 46, 0.7); border-radius: var(--radius-md); border: 1px solid var(--border-light);">
-          <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent-gold); font-weight: 700;">Dedicated Advisor</span>
-          <p style="font-weight: 600; font-size: 0.95rem; margin-top: 0.3rem; color: #fff;">Marcus Vance, CFA</p>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem;">Chief Investment Strategist</p>
-          <a href="mailto:advisors@sis.com" style="font-size: 0.82rem; color: var(--accent-gold-light); display: flex; align-items: center; gap: 0.4rem;">
-            <i class="fa-solid fa-envelope"></i> advisors@sis.com
+          <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent-gold); font-weight: 700;">Advisory Desk</span>
+          <p style="font-weight: 600; font-size: 0.95rem; margin-top: 0.3rem; color: #fff;">Sukhmira Investment Services LLP</p>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem;">Airoli, Navi Mumbai</p>
+          <a href="tel:9152579597" style="font-size: 0.82rem; color: var(--accent-emerald-light); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.3rem;">
+            <i class="fa-solid fa-phone"></i> +91 9152579597
+          </a>
+          <a href="mailto:sukhmirainvestment@gmail.com" style="font-size: 0.82rem; color: var(--accent-gold-light); display: flex; align-items: center; gap: 0.4rem;">
+            <i class="fa-solid fa-envelope"></i> sukhmirainvestment@gmail.com
           </a>
         </div>
       </aside>
@@ -95,14 +98,14 @@
             <div class="stat-card">
               <div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
               <div class="stat-data">
-                <strong id="clientTotalVal">$0.00</strong>
+                <strong id="clientTotalVal">₹0</strong>
                 <p>Total Net Worth</p>
               </div>
             </div>
             <div class="stat-card">
               <div class="stat-icon emerald"><i class="fa-solid fa-arrow-trend-up"></i></div>
               <div class="stat-data">
-                <strong id="clientGainVal">+$0.00</strong>
+                <strong id="clientGainVal">+₹0</strong>
                 <p id="clientGainPct">Cumulative Return (+0.0%)</p>
               </div>
             </div>
@@ -315,23 +318,24 @@
         <div class="form-group">
           <label for="depType">Transaction Action</label>
           <select id="depType" required>
-            <option value="Deposit">Cash Deposit / Wire Funding</option>
+            <option value="SIP / Deposit">SIP / Bank Deposit Funding</option>
             <option value="Buy">Purchase Asset Allocation</option>
-            <option value="Withdrawal">Withdrawal Request</option>
+            <option value="Withdrawal">Withdrawal / Redemption Request</option>
           </select>
         </div>
         <div class="form-group">
           <label for="depAsset">Target Asset Class</label>
           <select id="depAsset" required>
-            <option value="Equities">Global Equities</option>
-            <option value="Fixed Income">Fixed Income & Bonds</option>
-            <option value="Alternative">Alternative & Private Equity</option>
-            <option value="Cash">Cash Treasury Liquidity</option>
+            <option value="Mutual Funds">Mutual Funds &amp; SIP</option>
+            <option value="Bonds">Bonds &amp; Sovereign Gold</option>
+            <option value="Fixed Deposit">Fixed Deposits (Corporate &amp; Bank)</option>
+            <option value="Unlisted Shares">Unlisted Pre-IPO Shares</option>
+            <option value="54 EC Bonds">54 EC Capital Gain Bonds</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="depAmount">Amount ($ USD)</label>
-          <input type="number" id="depAmount" min="500" step="100" placeholder="e.g. 10000" required>
+          <label for="depAmount">Amount (₹ INR)</label>
+          <input type="number" id="depAmount" min="5000" step="5000" placeholder="e.g. 50000" required>
         </div>
         <div class="form-group">
           <label for="depNotes">Instructions / Memo (Optional)</label>
@@ -365,20 +369,21 @@
           <input type="date" id="consultDate" required>
         </div>
         <div class="form-group">
-          <label for="consultTime">Preferred Time</label>
+          <label for="consultTime">Preferred Time (IST)</label>
           <select id="consultTime" required>
-            <option value="10:00 AM EST">10:00 AM EST</option>
-            <option value="02:00 PM EST">02:00 PM EST</option>
-            <option value="04:30 PM EST">04:30 PM EST</option>
+            <option value="11:00 AM IST">11:00 AM IST</option>
+            <option value="03:00 PM IST">03:00 PM IST</option>
+            <option value="05:30 PM IST">05:30 PM IST</option>
           </select>
         </div>
         <div class="form-group">
           <label for="consultType">Topic / Focus</label>
           <select id="consultType">
-            <option value="Quarterly Portfolio Review">Quarterly Portfolio Review</option>
-            <option value="Tax Efficiency & Rebalancing">Tax Efficiency & Rebalancing</option>
-            <option value="Retirement Wealth Planning">Retirement Wealth Planning</option>
-            <option value="Risk Management & Hedging">Risk Management & Hedging</option>
+            <option value="Mutual Funds & SIP Review">Mutual Funds &amp; SIP Review</option>
+            <option value="54 EC Capital Gain Tax Planning">54 EC Capital Gain Tax Planning (Property Sale)</option>
+            <option value="High-Yield Corporate FDs">High-Yield Corporate FDs</option>
+            <option value="Unlisted Pre-IPO Shares">Unlisted Pre-IPO Shares</option>
+            <option value="Comprehensive Portfolio Strategy">Comprehensive Portfolio Strategy</option>
           </select>
         </div>
         <button type="submit" class="button primary" style="width: 100%; margin-top: 1rem;">
@@ -438,10 +443,10 @@
 
       // Greeting
       document.getElementById('clientGreeting').textContent = client.full_name || client.username;
-      document.getElementById('clientTotalVal').textContent = '$' + Number(metrics.totalValue || 0).toLocaleString();
+      document.getElementById('clientTotalVal').textContent = '₹' + Number(metrics.totalValue || 0).toLocaleString('en-IN');
       
       const gainSign = metrics.totalGain >= 0 ? '+' : '';
-      document.getElementById('clientGainVal').textContent = `${gainSign}$${Number(metrics.totalGain || 0).toLocaleString()}`;
+      document.getElementById('clientGainVal').textContent = `${gainSign}₹${Number(metrics.totalGain || 0).toLocaleString('en-IN')}`;
       document.getElementById('clientGainPct').textContent = `Cumulative Return (${gainSign}${metrics.totalGainPct}%)`;
       document.getElementById('clientRiskProfile').textContent = client.risk_profile || 'Moderate Growth';
 
@@ -461,10 +466,14 @@
       const total = metrics.totalValue || 1;
       
       const colors = {
-        'Equities': '#d4af37',
-        'Fixed Income': '#38bdf8',
-        'Alternative': '#10b981',
-        'Cash': '#a78bfa'
+        'Mutual Funds': '#10b981',
+        'Bonds': '#38bdf8',
+        'Fixed Deposit': '#d4af37',
+        'Unlisted Shares': '#f59e0b',
+        'Insurance': '#ec4899',
+        '54 EC Bonds': '#8b5cf6',
+        'Equities': '#10b981',
+        'Fixed Income': '#38bdf8'
       };
 
       for (const [assetClass, val] of Object.entries(assetBreakdown || {})) {
@@ -474,7 +483,7 @@
           <div>
             <div style="display:flex; justify-content:space-between; font-size:0.9rem; margin-bottom:0.35rem;">
               <span><strong>${assetClass}</strong></span>
-              <span>$${Number(val).toLocaleString()} (${pct}%)</span>
+              <span>₹${Number(val).toLocaleString('en-IN')} (${pct}%)</span>
             </div>
             <div style="height:8px; background:rgba(255,255,255,0.06); border-radius:4px; overflow:hidden;">
               <div style="width:${pct}%; height:100%; background:${col}; border-radius:4px;"></div>
@@ -493,7 +502,7 @@
               <div style="font-size:0.8rem; color:var(--text-muted);">${tx.date}</div>
             </div>
             <div style="text-align:right;">
-              <strong style="color:var(--accent-gold-light);">$${Number(tx.amount).toLocaleString()}</strong>
+              <strong style="color:var(--accent-gold-light);">₹${Number(tx.amount).toLocaleString('en-IN')}</strong>
               <div><span class="status-badge ${tx.status.toLowerCase()}">${tx.status}</span></div>
             </div>
           </div>
@@ -511,8 +520,8 @@
           <tr>
             <td><strong>${h.holding_name}</strong></td>
             <td><span class="status-badge in-review">${h.asset_class}</span></td>
-            <td><strong>$${Number(h.current_value).toLocaleString()}</strong></td>
-            <td>$${Number(h.invested_value).toLocaleString()}</td>
+            <td><strong>₹${Number(h.current_value).toLocaleString('en-IN')}</strong></td>
+            <td>₹${Number(h.invested_value).toLocaleString('en-IN')}</td>
             <td>${h.allocation_pct}%</td>
             <td><span class="${perfClass}">${sign}${h.performance_pct}%</span></td>
           </tr>
@@ -526,7 +535,7 @@
           <td><code>${tx.tx_code || 'TXN-' + tx.id}</code></td>
           <td><strong>${tx.type}</strong></td>
           <td>${tx.asset_class || 'General'}</td>
-          <td><strong>$${Number(tx.amount).toLocaleString()}</strong></td>
+          <td><strong>₹${Number(tx.amount).toLocaleString('en-IN')}</strong></td>
           <td>${tx.date}</td>
           <td><span class="status-badge ${tx.status.toLowerCase()}">${tx.status}</span></td>
           <td>${tx.description || '-'}</td>

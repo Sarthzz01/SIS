@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Executive Console | SIS</title>
-  <meta name="description" content="SIS Wealth Advisory Administrative Console - Client database, AUM analytics, portfolio management.">
+  <meta name="description"
+    content="SIS Wealth Advisory Administrative Console - Client database, AUM analytics, portfolio management.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
   <!-- Admin Dashboard View -->
   <div id="adminDashboardView" class="admin-dashboard-view">
     <header class="admin-header">
       <div class="container admin-header-inner">
         <a class="brand-wrapper" href="index.html">
-          <img src="logo.png" alt="SIS Logo">
+          <img src="logo.png" alt="Sukhmira Investment Services LLP Logo">
           <div class="brand-info">
             <span class="brand-name">SIS</span>
-            <span class="brand-tagline">Executive Management Console</span>
+            <span class="brand-tagline">Sukhmira Investment Services LLP</span>
           </div>
         </a>
         <div class="admin-header-info">
@@ -62,8 +67,10 @@
             </button>
           </nav>
 
-          <div style="margin-top: 2rem; padding: 1rem; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.2); border-radius: var(--radius-md);">
-            <div style="display:flex; align-items:center; gap:0.5rem; color:var(--accent-gold); font-size:0.8rem; font-weight:700;">
+          <div
+            style="margin-top: 2rem; padding: 1rem; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.2); border-radius: var(--radius-md);">
+            <div
+              style="display:flex; align-items:center; gap:0.5rem; color:var(--accent-gold); font-size:0.8rem; font-weight:700;">
               <i class="fa-solid fa-circle-check"></i> SQLite Live DB
             </div>
             <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.3rem;">
@@ -74,7 +81,7 @@
 
         <!-- Main Content -->
         <section class="admin-content">
-          
+
           <!-- SECTION 1: OVERVIEW -->
           <div class="admin-section active" id="overviewSection">
             <div class="section-header">
@@ -124,7 +131,8 @@
 
             <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.8rem;">
               <div class="hero-card" style="padding: 1.8rem;">
-                <h3 style="margin-bottom: 1.2rem; font-size: 1.15rem; display:flex; justify-content:space-between; align-items:center;">
+                <h3
+                  style="margin-bottom: 1.2rem; font-size: 1.15rem; display:flex; justify-content:space-between; align-items:center;">
                   <span>Asset Distribution By Class</span>
                   <span style="font-size:0.8rem; color:var(--text-muted);">SIS Global Assets</span>
                 </h3>
@@ -137,13 +145,16 @@
                 <h3 style="margin-bottom: 1.2rem; font-size: 1.15rem;">Fast Actions</h3>
                 <div style="display: flex; flex-direction: column; gap: 0.8rem;">
                   <button class="button secondary small" id="openAddHoldingBtn" style="justify-content: flex-start;">
-                    <i class="fa-solid fa-folder-plus" style="color:var(--accent-gold);"></i> Add Portfolio Allocation Holding
+                    <i class="fa-solid fa-folder-plus" style="color:var(--accent-gold);"></i> Add Portfolio Allocation
+                    Holding
                   </button>
                   <button class="button secondary small" id="openAddTxBtn" style="justify-content: flex-start;">
-                    <i class="fa-solid fa-receipt" style="color:var(--accent-emerald);"></i> Record Manual Client Transaction
+                    <i class="fa-solid fa-receipt" style="color:var(--accent-emerald);"></i> Record Manual Client
+                    Transaction
                   </button>
                   <button class="button secondary small" id="viewInquiriesFastBtn" style="justify-content: flex-start;">
-                    <i class="fa-solid fa-envelope" style="color:var(--accent-cyan);"></i> Inspect Inbound Consultation Requests
+                    <i class="fa-solid fa-envelope" style="color:var(--accent-cyan);"></i> Inspect Inbound Consultation
+                    Requests
                   </button>
                 </div>
               </div>
@@ -352,19 +363,21 @@
         <div class="form-group">
           <label for="holdingAssetClass">Asset Class</label>
           <select id="holdingAssetClass" required>
-            <option value="Equities">Equities</option>
-            <option value="Fixed Income">Fixed Income</option>
-            <option value="Alternative">Alternative Assets</option>
-            <option value="Cash">Cash Treasury</option>
+            <option value="Mutual Funds">Mutual Funds</option>
+            <option value="Bonds">Bonds</option>
+            <option value="Fixed Deposit">Fixed Deposit</option>
+            <option value="Unlisted Shares">Unlisted Shares</option>
+            <option value="54 EC Bonds">54 EC Bonds</option>
+            <option value="Insurance">Insurance</option>
           </select>
         </div>
         <div class="form-group">
           <label for="holdingName">Holding Strategy Name</label>
-          <input type="text" id="holdingName" placeholder="e.g. S&P 500 Alpha Fund" required>
+          <input type="text" id="holdingName" placeholder="e.g. HDFC Flexi Cap Fund" required>
         </div>
         <div class="form-group">
-          <label for="holdingValue">Current Value ($ USD)</label>
-          <input type="number" id="holdingValue" min="1000" step="500" required>
+          <label for="holdingValue">Current Value (₹ INR)</label>
+          <input type="number" id="holdingValue" min="5000" step="5000" required>
         </div>
         <div class="form-group">
           <label for="holdingAlloc">Allocation %</label>
@@ -408,15 +421,18 @@
         <div class="form-group">
           <label for="txAsset">Asset Category</label>
           <select id="txAsset">
-            <option value="Equities">Equities</option>
-            <option value="Fixed Income">Fixed Income</option>
-            <option value="Alternative">Alternative</option>
-            <option value="Cash">Cash Liquidity</option>
+            <option value="Mutual Funds">Mutual Funds</option>
+            <option value="Bonds">Bonds</option>
+            <option value="Fixed Deposit">Fixed Deposit</option>
+            <option value="Unlisted Shares">Unlisted Shares</option>
+            <option value="54 EC Bonds">54 EC Bonds</option>
+            <option value="Insurance">Insurance</option>
+            <option value="Bank / Cash">Bank / Cash</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="txAmount">Amount ($ USD)</label>
-          <input type="number" id="txAmount" min="100" step="500" required>
+          <label for="txAmount">Amount (₹ INR)</label>
+          <input type="number" id="txAmount" min="1000" step="1000" required>
         </div>
         <div class="form-group">
           <label for="txStatus">Execution Status</label>
@@ -472,7 +488,7 @@
       }
 
       logoutBtn?.addEventListener('click', async () => {
-        try { await fetch('/api/auth/logout', { method: 'POST' }); } catch (e) {}
+        try { await fetch('/api/auth/logout', { method: 'POST' }); } catch (e) { }
         localStorage.removeItem('sis_token');
         localStorage.removeItem('sis_user');
         window.location.href = 'signin.html';
@@ -503,9 +519,9 @@
         if (!res.ok) return;
         const m = await res.json();
 
-        document.getElementById('statTotalAUM').textContent = '$' + (m.totalAUM / 1000000).toFixed(2) + 'M';
+        document.getElementById('statTotalAUM').textContent = m.totalAUM >= 10000000 ? '₹' + (m.totalAUM / 10000000).toFixed(2) + ' Cr' : '₹' + (m.totalAUM / 100000).toFixed(2) + ' Lakh';
         document.getElementById('statTotalClients').textContent = m.totalClients;
-        document.getElementById('statAvgPortfolio').textContent = '$' + (m.avgPortfolio / 1000).toFixed(0) + 'K';
+        document.getElementById('statAvgPortfolio').textContent = m.avgPortfolio >= 10000000 ? '₹' + (m.avgPortfolio / 10000000).toFixed(2) + ' Cr' : '₹' + (m.avgPortfolio / 100000).toFixed(2) + ' Lakh';
         document.getElementById('statNewInquiries').textContent = m.newInquiries;
       } catch (e) {
         console.error('Metrics fetch error:', e);
@@ -544,7 +560,7 @@
           <td>${c.email}</td>
           <td>${c.phone || '-'}</td>
           <td><span class="status-badge in-review">${c.risk_profile || 'Balanced'}</span></td>
-          <td><strong style="color:var(--accent-gold-light);">$${Number(c.portfolioValue).toLocaleString()}</strong></td>
+          <td><strong style="color:var(--accent-gold-light);">₹${Number(c.portfolioValue).toLocaleString('en-IN')}</strong></td>
           <td><span class="status-badge ${c.status.toLowerCase()}">${c.status}</span></td>
           <td>
             <div class="table-actions">
@@ -596,16 +612,26 @@
         const distContainer = document.getElementById('overviewAssetAllocation');
         if (distContainer && assetSummary) {
           const totalVal = assetSummary.reduce((sum, a) => sum + a.total_value, 0) || 1;
-          const classColors = { 'Equities': '#d4af37', 'Fixed Income': '#38bdf8', 'Alternative': '#10b981', 'Cash': '#a78bfa' };
+          const classColors = {
+            'Mutual Funds': '#10b981',
+            'Bonds': '#38bdf8',
+            'Fixed Deposit': '#d4af37',
+            'Unlisted Shares': '#f59e0b',
+            '54 EC Bonds': '#8b5cf6',
+            'Insurance': '#ec4899',
+            'Equities': '#10b981',
+            'Fixed Income': '#38bdf8'
+          };
 
           distContainer.innerHTML = assetSummary.map(a => {
             const pct = ((a.total_value / totalVal) * 100).toFixed(1);
             const col = classColors[a.asset_class] || '#d4af37';
+            const valFormatted = a.total_value >= 10000000 ? '₹' + (a.total_value / 10000000).toFixed(2) + ' Cr' : '₹' + (a.total_value / 100000).toFixed(2) + ' Lakh';
             return `
               <div>
                 <div style="display:flex; justify-content:space-between; font-size:0.9rem; margin-bottom:0.35rem;">
                   <span><strong>${a.asset_class}</strong> (${a.holdings_count} positions)</span>
-                  <strong style="color:var(--text-main);">$${(a.total_value / 1000000).toFixed(2)}M (${pct}%)</strong>
+                  <strong style="color:var(--text-main);">${valFormatted} (${pct}%)</strong>
                 </div>
                 <div style="height:8px; background:rgba(255,255,255,0.06); border-radius:4px; overflow:hidden;">
                   <div style="width:${pct}%; height:100%; background:${col}; border-radius:4px;"></div>
@@ -625,7 +651,7 @@
               <td><strong>${p.client_name}</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">${p.client_email}</span></td>
               <td>${p.holding_name}</td>
               <td><span class="status-badge in-review">${p.asset_class}</span></td>
-              <td><strong>$${Number(p.current_value).toLocaleString()}</strong></td>
+              <td><strong>₹${Number(p.current_value).toLocaleString('en-IN')}</strong></td>
               <td>${p.allocation_pct}%</td>
               <td><span class="${perfClass}">${sign}${p.performance_pct}%</span></td>
               <td>
@@ -670,7 +696,7 @@
             <td><strong>${t.client_name}</strong></td>
             <td>${t.type}</td>
             <td>${t.asset_class || '-'}</td>
-            <td><strong style="color:var(--accent-gold-light);">$${Number(t.amount).toLocaleString()}</strong></td>
+            <td><strong style="color:var(--accent-gold-light);">₹${Number(t.amount).toLocaleString('en-IN')}</strong></td>
             <td>${t.date}</td>
             <td><span class="status-badge ${t.status.toLowerCase()}">${t.status}</span></td>
             <td>
@@ -926,4 +952,5 @@
     }
   </script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 /**
- * SIS Sukhmira Investment Services
+ * Sukhmira Investment Services LLP (SIS)
+ * Financial Investment Services
  * Modern Fintech UI Engine & Backend Client Integration
  */
 
@@ -13,11 +14,24 @@ menuToggle?.addEventListener('click', () => {
   mainNav?.classList.toggle('open');
 });
 
-document.querySelectorAll('.main-nav a').forEach(link => {
+document.querySelectorAll('.main-nav a:not(.has-dropdown)').forEach(link => {
   link.addEventListener('click', () => {
     mainNav?.classList.remove('open');
     menuToggle?.setAttribute('aria-expanded', 'false');
   });
+});
+
+// Dropdown support for mobile & click
+document.querySelectorAll('.nav-dropdown-wrapper').forEach(wrapper => {
+  const toggle = wrapper.querySelector('.nav-dropdown-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', (e) => {
+      if (window.innerWidth <= 900) {
+        e.preventDefault();
+        wrapper.classList.toggle('active');
+      }
+    });
+  }
 });
 
 // Header Scrolled Glass Effect
@@ -68,6 +82,20 @@ function showToast(message, type = 'info') {
 }
 window.showToast = showToast;
 
+// Currency Formatter for Indian Rupees (₹)
+function formatINR(val, compact = false) {
+  const num = Math.round(Number(val) || 0);
+  if (compact) {
+    if (num >= 10000000) {
+      return '₹' + (num / 10000000).toFixed(2) + ' Cr';
+    } else if (num >= 100000) {
+      return '₹' + (num / 100000).toFixed(2) + ' Lakh';
+    }
+  }
+  return '₹' + num.toLocaleString('en-IN');
+}
+window.formatINR = formatINR;
+
 // Global Dynamic Header Authentication State
 function updateHeaderAuthState() {
   const nav = document.querySelector('.main-nav');
@@ -79,10 +107,8 @@ function updateHeaderAuthState() {
   if (rawUser && token) {
     try {
       const user = JSON.parse(rawUser);
-      // Remove default signin and admin links from main-nav if present
       nav.querySelectorAll('.signin-nav-link, .admin-nav-link').forEach(el => el.remove());
 
-      // Create contextual dynamic user action block
       let userBlock = nav.querySelector('.user-nav-action-block');
       if (!userBlock) {
         userBlock = document.createElement('div');
@@ -145,10 +171,10 @@ const animateCounter = counter => {
   const update = () => {
     current += step;
     if (current < target) {
-      counter.textContent = current.toLocaleString();
+      counter.textContent = current.toLocaleString('en-IN');
       requestAnimationFrame(update);
     } else {
-      counter.textContent = target.toLocaleString();
+      counter.textContent = target.toLocaleString('en-IN');
     }
   };
 
@@ -174,7 +200,7 @@ if (counters.length) {
   });
 }
 
-// Global Financial SIP & Wealth Growth Calculator Widget
+// Global Financial SIP & Wealth Growth Calculator Widget (in ₹ INR)
 function initWealthCalculator() {
   const monthlySlider = document.getElementById('calcMonthly');
   const returnSlider = document.getElementById('calcReturn');
@@ -191,13 +217,14 @@ function initWealthCalculator() {
   const estGain = document.getElementById('calcEstGain');
   const barInvested = document.getElementById('calcBarInvested');
   const barReturns = document.getElementById('calcBarReturns');
+  const corpusWords = document.getElementById('calcCorpusWords');
 
   function calculate() {
     const P = Number(monthlySlider.value);
     const annualRate = Number(returnSlider.value);
     const years = Number(periodSlider.value);
 
-    monthlyVal.textContent = '$' + P.toLocaleString();
+    monthlyVal.textContent = '₹' + P.toLocaleString('en-IN');
     returnVal.textContent = annualRate + '%';
     periodVal.textContent = years + (years === 1 ? ' Year' : ' Years');
 
@@ -205,13 +232,23 @@ function initWealthCalculator() {
     const n = years * 12;
 
     const totalInvested = P * n;
-    // Compound interest annuity formula for monthly SIP
+    // Compound interest annuity formula for monthly SIP: P * [((1+i)^n - 1) / i] * (1+i)
     const futureValue = P * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
     const wealthGain = Math.max(futureValue - totalInvested, 0);
 
-    totalCorpus.textContent = '$' + Math.round(futureValue).toLocaleString();
-    investedAmount.textContent = '$' + Math.round(totalInvested).toLocaleString();
-    estGain.textContent = '+$' + Math.round(wealthGain).toLocaleString();
+    totalCorpus.textContent = '₹' + Math.round(futureValue).toLocaleString('en-IN');
+    investedAmount.textContent = '₹' + Math.round(totalInvested).toLocaleString('en-IN');
+    estGain.textContent = '+₹' + Math.round(wealthGain).toLocaleString('en-IN');
+
+    if (corpusWords) {
+      if (futureValue >= 10000000) {
+        corpusWords.textContent = `(Approx. ₹${(futureValue / 10000000).toFixed(2)} Crores)`;
+      } else if (futureValue >= 100000) {
+        corpusWords.textContent = `(Approx. ₹${(futureValue / 100000).toFixed(2)} Lakhs)`;
+      } else {
+        corpusWords.textContent = '';
+      }
+    }
 
     const investedPct = (totalInvested / futureValue) * 100;
     if (barInvested && barReturns) {
@@ -224,6 +261,24 @@ function initWealthCalculator() {
   returnSlider.addEventListener('input', calculate);
   periodSlider.addEventListener('input', calculate);
   calculate();
+}
+
+// FAQ Accordion System
+function initFAQAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    if (question) {
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('active');
+        // Close siblings if desired, or toggle
+        faqItems.forEach(other => other.classList.remove('active'));
+        if (!isOpen) {
+          item.classList.add('active');
+        }
+      });
+    }
+  });
 }
 
 // Global Contact Form with Live Backend Persistence
@@ -253,12 +308,13 @@ function initContactForms() {
       const email = emailInput ? emailInput.value.trim() : '';
       const phone = phoneInput ? phoneInput.value.trim() : '';
       const message = messageInput ? messageInput.value.trim() : '';
-      const service_interest = serviceInput ? serviceInput.value : 'Investment Planning';
+      const service_interest = serviceInput ? serviceInput.value : 'Mutual Funds & SIP';
 
       if (!name || !email || !message) {
         if (statusEl) {
           statusEl.textContent = 'Please fill in all required fields (Name, Email, Message).';
           statusEl.classList.add('error');
+          statusEl.style.display = 'block';
         }
         return;
       }
@@ -280,21 +336,24 @@ function initContactForms() {
         const data = await res.json();
         if (res.ok) {
           if (statusEl) {
-            statusEl.textContent = data.message || 'Thank you! Your message has been sent to our wealth team.';
+            statusEl.textContent = data.message || 'Thank you! Your inquiry has been sent to Sukhmira Investment Services LLP.';
             statusEl.classList.add('success');
+            statusEl.style.display = 'block';
           }
-          showToast('Inquiry received. An advisor will contact you.', 'success');
+          showToast('Inquiry received. Sukhmira advisor will contact you.', 'success');
           form.reset();
         } else {
           if (statusEl) {
             statusEl.textContent = data.error || 'Failed to submit. Please try again.';
             statusEl.classList.add('error');
+            statusEl.style.display = 'block';
           }
         }
       } catch (err) {
         if (statusEl) {
           statusEl.textContent = 'Server connection error. Please try again later.';
           statusEl.classList.add('error');
+          statusEl.style.display = 'block';
         }
         showToast('Server connection error', 'error');
       } finally {
@@ -311,5 +370,6 @@ function initContactForms() {
 document.addEventListener('DOMContentLoaded', () => {
   updateHeaderAuthState();
   initWealthCalculator();
+  initFAQAccordion();
   initContactForms();
 });

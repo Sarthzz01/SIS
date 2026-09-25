@@ -1,33 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services & Mandates | SIS Wealth Advisory</title>
-  <meta name="description" content="Discover SIS's wealth management services, multi-asset portfolio strategies, and corporate reserve solutions.">
+  <title>Financial Services & Offerings | Sukhmira Investment Services LLP</title>
+  <meta name="description"
+    content="Explore complete financial investment services by Sukhmira Investment Services LLP: Mutual Funds, Bonds, Fixed Deposits, Insurance, Unlisted Shares, and 54 EC Capital Gain Bonds in Navi Mumbai.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .service-section-block {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .service-detail-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .service-detail-grid.reverse {
+      grid-template-columns: 1fr 1.2fr;
+    }
+
+    @media (max-width: 992px) {
+
+      .service-detail-grid,
+      .service-detail-grid.reverse {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .feature-list-check {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .feature-list-check li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .feature-list-check li i {
+      color: var(--accent-emerald);
+      margin-top: 4px;
+      font-size: 0.9rem;
+    }
+
+    .service-card-box {
+      background: var(--surface-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+
+    .service-tag-pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 1rem;
+    }
+
+    .quick-service-nav {
+      background: rgba(13, 23, 46, 0.8);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .quick-service-nav a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .quick-service-nav a:hover {
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--accent-gold-light);
+    }
+  </style>
 </head>
+
 <body>
+
+
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand-wrapper" href="index.html">
-        <img src="logo.png" alt="SIS logo">
+        <img src="logo.png" alt="Sukhmira Investment Services LLP Logo">
         <div class="brand-info">
           <span class="brand-name">SIS</span>
-          <span class="brand-tagline">Sukhmira Investment Services</span>
+          <span class="brand-tagline">Sukhmira Investment Services LLP</span>
         </div>
       </a>
       <nav class="main-nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html" class="active">Services</a>
+        <a href="about.html">About Us</a>
+
+        <!-- Services Dropdown -->
+        <div class="nav-dropdown-wrapper">
+          <a href="services.html" class="nav-dropdown-toggle has-dropdown active">
+            <span>Services</span> <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="#mutual-funds" class="nav-dropdown-item">
+              <i class="fa-solid fa-chart-pie"></i> Mutual Funds &amp; SIP
+            </a>
+            <a href="#bonds" class="nav-dropdown-item">
+              <i class="fa-solid fa-landmark"></i> Bonds &amp; Debentures
+            </a>
+            <a href="#fixed-deposits" class="nav-dropdown-item">
+              <i class="fa-solid fa-vault"></i> Fixed Deposits (FDs)
+            </a>
+            <a href="#insurance" class="nav-dropdown-item">
+              <i class="fa-solid fa-shield-halved"></i> Insurance Solutions
+            </a>
+            <a href="#unlisted-shares" class="nav-dropdown-item">
+              <i class="fa-solid fa-arrow-trend-up"></i> Unlisted Pre-IPO Shares
+            </a>
+            <a href="#54-ec-bonds" class="nav-dropdown-item">
+              <i class="fa-solid fa-receipt"></i> 54 EC Capital Gain Bonds
+            </a>
+          </div>
+        </div>
+
         <a href="index.html#calculator">Wealth Planner</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html">Contact Us</a>
         <a href="signin.html" class="button small primary signin-nav-link">Sign In</a>
       </nav>
       <button class="menu-toggle" aria-label="Toggle navigation">
@@ -37,21 +169,23 @@
   </header>
 
   <main>
-    <!-- Hero -->
+    <!-- Services Hero -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow"><i class="fa-solid fa-layer-group"></i> Bespoke Advisory</span>
-          <h1>Disciplined mandates tailored to your wealth stage.</h1>
+          <span class="eyebrow"><i class="fa-solid fa-layer-group"></i> Comprehensive Advisory</span>
+          <h1>Tailored Financial Solutions for Long-Term Wealth Creation.</h1>
           <p>
-            Whether growing liquid proceeds from an enterprise exit or stewarding intergenerational capital, our mandates balance growth, risk, and cash flow liquidity.
+            Sukhmira Investment Services LLP offers structured, research-backed investment options across Mutual Funds,
+            Bonds, Fixed Deposits, Insurance, Pre-IPO Unlisted Shares, and 54 EC Capital Gain Bonds. We align each
+            instrument with your specific risk appetite and life goals.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="contact.html">
-              <i class="fa-solid fa-calendar-check"></i> Book Mandate Consultation
+            <a class="button primary" href="#contactBooking">
+              <i class="fa-solid fa-calendar-check"></i> Book an Advisory Session
             </a>
-            <a class="button secondary" href="signin.html">
-              <i class="fa-solid fa-user-plus"></i> Open Client Account
+            <a class="button secondary" href="index.html#calculator">
+              <i class="fa-solid fa-calculator"></i> Simulate SIP Corpus
             </a>
           </div>
         </div>
@@ -60,21 +194,22 @@
           <div class="hero-card">
             <div class="hero-card-header">
               <div class="hero-card-title">
-                <i class="fa-solid fa-shield-halved"></i> Fiduciary Commitment
+                <i class="fa-solid fa-shield-halved"></i> Dedicated Fiduciary Desk
               </div>
-              <span class="hero-live-pill"><span class="hero-live-dot"></span> Fee-Only</span>
+              <span class="hero-live-pill"><span class="hero-live-dot"></span> Full Spectrum</span>
             </div>
-            <p style="font-size: 0.95rem; margin-bottom: 1rem;">
-              We operate exclusively as fee-only fiduciaries. Zero hidden commissions, zero broker markups, and total alignment with your net returns.
+            <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">
+              "Whether building high-growth wealth through equity SIPs, locking guaranteed returns in Corporate FDs, or
+              saving tax on property sales through 54EC Bonds, we provide disciplined guidance."
             </p>
             <div class="hero-card-stats">
               <div class="hero-stat-box">
-                <span>Annual Management Fee</span>
-                <strong style="color:var(--accent-gold-light);">0.45% - 0.75%</strong>
+                <span>Active Clients</span>
+                <strong style="color:var(--accent-gold-light);">5,000+</strong>
               </div>
               <div class="hero-stat-box">
-                <span>Minimum Mandate</span>
-                <strong style="color:var(--accent-cyan);">$50,000</strong>
+                <span>Experience</span>
+                <strong style="color:var(--accent-cyan);">15+ Years</strong>
               </div>
             </div>
           </div>
@@ -82,164 +217,657 @@
       </div>
     </section>
 
-    <!-- Detailed Services Grid -->
-    <section class="container" style="padding-bottom: 5rem;">
-      <div class="section-heading">
-        <span class="eyebrow"><i class="fa-solid fa-briefcase"></i> Core Offerings</span>
-        <h2>Institutional Capabilities for Private Clients</h2>
-        <p>Every mandate is constructed with direct holdings, institutional share classes, and defensive risk overlays.</p>
+    <!-- Quick Jump Sub-Navigation -->
+    <div class="container">
+      <div class="quick-service-nav">
+        <a href="#mutual-funds"><i class="fa-solid fa-chart-pie"></i> Mutual Funds</a>
+        <a href="#bonds"><i class="fa-solid fa-landmark"></i> Bonds</a>
+        <a href="#fixed-deposits"><i class="fa-solid fa-vault"></i> Fixed Deposits</a>
+        <a href="#insurance"><i class="fa-solid fa-shield-halved"></i> Insurance</a>
+        <a href="#unlisted-shares"><i class="fa-solid fa-arrow-trend-up"></i> Unlisted Shares</a>
+        <a href="#54-ec-bonds"><i class="fa-solid fa-receipt"></i> 54 EC Bonds</a>
       </div>
+    </div>
 
-      <div class="feature-grid">
-        <article class="service-block">
-          <i class="fa-solid fa-chart-pie"></i>
-          <h3>Global Equities & Alpha Growth</h3>
-          <p>Direct indexing and concentrated high-conviction portfolios focusing on companies with durable economic moats, healthy balance sheets, and solid cash flow generation.</p>
-        </article>
+    <!-- SERVICE 1: MUTUAL FUNDS -->
+    <section class="service-section-block" id="mutual-funds">
+      <div class="container">
+        <div class="service-detail-grid">
+          <div>
+            <span class="service-tag-pill"
+              style="background: rgba(16,185,129,0.12); color: var(--accent-emerald-light); border: 1px solid rgba(16,185,129,0.3);">
+              Wealth Creation &amp; SIP
+            </span>
+            <h2>Mutual Funds: Grow Your Wealth with Smart Investments</h2>
+            <p class="lead" style="color: var(--text-secondary); margin-bottom: 1rem;">
+              Diversified. Professionally Managed. Built for Long-Term Compounding.
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.65;">
+              At <strong>Sukhmira Investment Services LLP</strong>, we help investors build sustainable wealth through
+              carefully selected mutual fund solutions. A mutual fund pools money from multiple investors and invests
+              across equities, fixed income securities, or hybrid instruments under professional fund management.
+            </p>
+            <ul class="feature-list-check">
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Equity Mutual Funds:</strong> Invest in high-conviction stocks across Large Cap, Mid Cap,
+                  and Flexi Cap categories for long-term capital growth.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Debt Mutual Funds:</strong> Focus on fixed-income instruments like government securities
+                  and high-quality corporate debt for capital preservation and stable returns.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Tax-Saving Funds (ELSS):</strong> Build wealth while claiming tax deductions of up to ₹1.5
+                  Lakhs under Section 80C of the Income Tax Act with the shortest lock-in period (3 years).</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Hybrid Mutual Funds:</strong> Dynamically blend equities and fixed income to balance growth
+                  with downside protection.</div>
+              </li>
+            </ul>
+            <a href="#contactBooking" class="button primary">
+              <i class="fa-solid fa-chart-line"></i> Start a Systematic Investment Plan (SIP)
+            </a>
+          </div>
 
-        <article class="service-block">
-          <i class="fa-solid fa-building-columns"></i>
-          <h3>Fixed Income & Capital Preservation</h3>
-          <p>Active bond laddering across US Treasuries, investment-grade corporate bonds, and municipal paper designed for tax-exempt income and baseline security.</p>
-        </article>
-
-        <article class="service-block">
-          <i class="fa-solid fa-cubes-stacked"></i>
-          <h3>Alternative & Private Assets</h3>
-          <p>Inflation-protected real assets, private credit structures, physical gold allocation, and renewable infrastructure trusts for genuine market non-correlation.</p>
-        </article>
-
-        <article class="service-block">
-          <i class="fa-solid fa-piggy-bank"></i>
-          <h3>Executive Retirement Planning</h3>
-          <p>Detailed cash-flow withdrawal sequencing, 401(k)/pension rollover optimization, and healthcare capital preservation for long-term security.</p>
-        </article>
-
-        <article class="service-block">
-          <i class="fa-solid fa-hand-holding-dollar"></i>
-          <h3>Corporate Treasury & Reserves</h3>
-          <p>Active cash management for operating businesses, corporate cash diversification, and high-yield overnight liquidity optimization.</p>
-        </article>
-
-        <article class="service-block">
-          <i class="fa-solid fa-scale-balanced"></i>
-          <h3>Tax-Loss & Rebalancing Protocols</h3>
-          <p>Continuous algorithmic monitoring to harvest losses, offset capital gains, and maintain target asset ratios without triggering unnecessary tax drag.</p>
-        </article>
+          <div>
+            <div class="service-card-box">
+              <h3 style="color: var(--accent-gold-light); margin-bottom: 1.25rem;">Why Invest in Mutual Funds?</h3>
+              <div style="display:flex; flex-direction:column; gap:1.25rem;">
+                <div style="display:flex; gap:1rem; align-items:flex-start;">
+                  <div class="service-icon-box" style="width:44px; height:44px; font-size:1.1rem; flex-shrink:0;">
+                    <i class="fa-solid fa-cubes"></i>
+                  </div>
+                  <div>
+                    <strong style="color:#fff; display:block;">Diversification</strong>
+                    <span style="font-size:0.88rem; color:var(--text-secondary);">Your investment is spread across
+                      hundreds of securities, drastically reducing single-stock concentration risk.</span>
+                  </div>
+                </div>
+                <div style="display:flex; gap:1rem; align-items:flex-start;">
+                  <div class="service-icon-box" style="width:44px; height:44px; font-size:1.1rem; flex-shrink:0;">
+                    <i class="fa-solid fa-user-tie"></i>
+                  </div>
+                  <div>
+                    <strong style="color:#fff; display:block;">Professional Fund Management</strong>
+                    <span style="font-size:0.88rem; color:var(--text-secondary);">Top asset management institutions and
+                      expert fund managers actively analyze market trends on your behalf.</span>
+                  </div>
+                </div>
+                <div style="display:flex; gap:1rem; align-items:flex-start;">
+                  <div class="service-icon-box" style="width:44px; height:44px; font-size:1.1rem; flex-shrink:0;">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                  </div>
+                  <div>
+                    <strong style="color:#fff; display:block;">Easy Accessibility &amp; Liquidity</strong>
+                    <span style="font-size:0.88rem; color:var(--text-secondary);">Start disciplined SIPs with flexible
+                      monthly contributions and redeem your money whenever needed.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Pricing / Mandate Tiers -->
-    <section style="background: var(--bg-deep); border-top: 1px solid var(--border-light); padding: 5rem 0;">
+    <!-- SERVICE 2: BONDS -->
+    <section class="service-section-block" id="bonds" style="background: var(--bg-subtle);">
       <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow"><i class="fa-solid fa-gem"></i> Transparent Pricing</span>
-          <h2>Clear, Tiered Fiduciary Fee Schedule</h2>
-          <p>Transparent quarterly billing calculated strictly as a percentage of assets under management. No transaction commissions or trade surcharges.</p>
+        <div class="service-detail-grid reverse">
+          <div>
+            <div class="service-card-box">
+              <h3 style="color: var(--accent-gold-light); margin-bottom: 1.25rem;">Key Benefits of Bond Investing</h3>
+              <ul class="feature-list-check" style="margin: 0;">
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div><strong>Stable &amp; Predictable Income:</strong> Bonds pay regular coupon interest at predefined
+                    intervals, creating a dependable cash flow stream.</div>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div><strong>Lower Risk than Equities:</strong> High-grade bonds protect initial capital and provide
+                    lower volatility during market pullbacks.</div>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div><strong>Portfolio Hedge:</strong> Balancing equities with fixed-income debt ensures your overall
+                    portfolio remains resilient.</div>
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div><strong>Capital Preservation:</strong> Principal is returned in full upon maturity, ensuring
+                    peace of mind for conservative wealth.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <span class="service-tag-pill"
+              style="background: rgba(212,175,55,0.12); color: var(--accent-gold-light); border: 1px solid rgba(212,175,55,0.3);">
+              Fixed Income
+            </span>
+            <h2>Bonds: Stable Returns. Lower Risk. Long-Term Wealth.</h2>
+            <p class="lead" style="color: var(--text-secondary); margin-bottom: 1rem;">
+              Reliable regular income while preserving your core capital.
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.65;">
+              A <strong>bond</strong> is an investment instrument where you lend capital to a government entity,
+              municipality, or corporation. In return, the issuer pays you scheduled interest payments and returns the
+              principal at maturity. Bonds are ideal for investors who prefer consistent, predictable returns over
+              equity swings.
+            </p>
+            <ul class="feature-list-check">
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <div><strong>Government &amp; Sovereign Gold Bonds (SGB):</strong> Backed by the Government of India,
+                  offering the highest degree of safety and tax-free capital gains at maturity.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <div><strong>Corporate Bonds &amp; NCDs:</strong> Issued by top-rated Indian corporations and financial
+                  institutions offering attractive yields higher than standard savings.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-check"></i>
+                <div><strong>Tax-Free Bonds:</strong> High-value instruments issued by public sector undertakings (PSUs)
+                  where interest earned is 100% tax-free under Section 10(15)(iv)(h).</div>
+              </li>
+            </ul>
+            <a href="#contactBooking" class="button secondary">
+              <i class="fa-solid fa-landmark"></i> Explore Bond Investment Options
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE 3: FIXED DEPOSITS -->
+    <section class="service-section-block" id="fixed-deposits">
+      <div class="container">
+        <div class="service-detail-grid">
+          <div>
+            <span class="service-tag-pill"
+              style="background: rgba(56,189,248,0.12); color: var(--accent-cyan); border: 1px solid rgba(56,189,248,0.3);">
+              Guaranteed Returns
+            </span>
+            <h2>Fixed Deposits: Guaranteed Returns. Assured Peace of Mind.</h2>
+            <p class="lead" style="color: var(--text-secondary); margin-bottom: 1rem;">
+              Secure lump-sum investments with zero equity volatility and flexible interest payouts.
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.65;">
+              A Fixed Deposit (FD) is a trusted investment avenue where you deposit money for a designated tenure and
+              earn guaranteed interest. At <strong>Sukhmira Investment Services LLP</strong>, we help clients choose
+              between leading Scheduled Commercial Banks and AAA-rated Corporate FDs that offer higher interest rates.
+            </p>
+            <ul class="feature-list-check">
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Corporate &amp; NBFC Fixed Deposits:</strong> Earn competitive interest rates (up to 7.80%
+                  – 8.50%+ p.a.) with CRISIL/ICRA AAA and AA+ rated safety.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Senior Citizen Privilege (+0.50% Extra):</strong> Additional 0.25% to 0.50% higher interest
+                  rate specifically designed for senior citizens.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Flexible Payout Frequencies:</strong> Choose monthly, quarterly, semi-annual, or cumulative
+                  compounding payout options to match your retirement cash flow needs.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Tax-Saving FDs:</strong> 5-year lock-in bank FDs eligible for tax deduction under Section
+                  80C.</div>
+              </li>
+            </ul>
+            <a href="#contactBooking" class="button primary">
+              <i class="fa-solid fa-vault"></i> Compare Top FD Rates
+            </a>
+          </div>
+
+          <div>
+            <div class="service-card-box">
+              <h3 style="color: var(--accent-gold-light); margin-bottom: 1rem;">Corporate FD Advantage</h3>
+              <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1.5rem;">
+                Why high-net-worth investors and retirees choose Corporate FDs through Sukhmira:
+              </p>
+              <div
+                style="background:rgba(8,15,30,0.6); padding:1.2rem; border-radius:var(--radius-md); border:1px solid var(--border-light); margin-bottom:1rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+                  <span style="color:var(--text-muted); font-size:0.85rem;">Average Bank FD</span>
+                  <span style="font-weight:700; color:#fff;">6.50% - 7.10%</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <span style="color:var(--accent-gold-light); font-size:0.85rem; font-weight:600;">Top AAA Corporate
+                    FD</span>
+                  <span style="font-weight:700; color:var(--accent-emerald-light);">7.75% - 8.60%*</span>
+                </div>
+              </div>
+              <ul
+                style="list-style:none; display:flex; flex-direction:column; gap:0.6rem; font-size:0.85rem; color:var(--text-muted);">
+                <li><i class="fa-solid fa-check" style="color:var(--accent-emerald); margin-right:0.4rem;"></i> Safe
+                  &amp; verified credit ratings (CRISIL / ICRA)</li>
+                <li><i class="fa-solid fa-check" style="color:var(--accent-emerald); margin-right:0.4rem;"></i>
+                  Hassle-free digital application &amp; direct bank credit</li>
+                <li><i class="fa-solid fa-check" style="color:var(--accent-emerald); margin-right:0.4rem;"></i>
+                  Premature liquidity facility as per RBI guidelines</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE 4: INSURANCE -->
+    <section class="service-section-block" id="insurance" style="background: var(--bg-subtle);">
+      <div class="container">
+        <div class="service-detail-grid reverse">
+          <div>
+            <div class="service-card-box">
+              <h3 style="color: var(--accent-gold-light); margin-bottom: 1.25rem;">Why Insurance is Essential</h3>
+              <div style="display:flex; flex-direction:column; gap:1.2rem;">
+                <div>
+                  <strong style="color:#fff; display:block; margin-bottom:0.2rem;">Financial Security for
+                    Family</strong>
+                  <p style="font-size:0.88rem; color:var(--text-secondary); margin:0;">
+                    Guarantees that your loved ones maintain their lifestyle, repay existing liabilities, and fund
+                    long-term goals in your absence.
+                  </p>
+                </div>
+                <div>
+                  <strong style="color:#fff; display:block; margin-bottom:0.2rem;">Protection Against Medical
+                    Emergencies</strong>
+                  <p style="font-size:0.88rem; color:var(--text-secondary); margin:0;">
+                    Shields your accumulated savings from being wiped out by rising hospitalization costs, surgeries,
+                    and critical illness treatments.
+                  </p>
+                </div>
+                <div>
+                  <strong style="color:#fff; display:block; margin-bottom:0.2rem;">Tax Savings Under 80C &amp;
+                    80D</strong>
+                  <p style="font-size:0.88rem; color:var(--text-secondary); margin:0;">
+                    Deductions on life insurance premiums (Sec 80C) and health insurance premiums (Sec 80D up to ₹75,000
+                    for families and parents).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span class="service-tag-pill"
+              style="background: rgba(16,185,129,0.12); color: var(--accent-emerald-light); border: 1px solid rgba(16,185,129,0.3);">
+              Complete Protection
+            </span>
+            <h2>Insurance: Protect What Matters Most</h2>
+            <p class="lead" style="color: var(--text-secondary); margin-bottom: 1rem;">
+              Financial security, income protection, and peace of mind during life’s uncertainties.
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.65;">
+              Insurance is the foundational shield of any sound financial plan. At <strong>Sukhmira Investment Services
+                LLP</strong>, we conduct an in-depth need analysis to ensure you hold adequate, cost-effective coverage
+              without paying unnecessary commissions on poor endowment products.
+            </p>
+            <ul class="feature-list-check">
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Pure Term Life Insurance:</strong> Large sum assured at low annual premiums to secure your
+                  dependents and clear liabilities.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Comprehensive Health Insurance:</strong> Cashless hospital coverage, no-claim bonuses,
+                  restore benefits, and critical illness riders.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Family Floater Plans:</strong> One comprehensive policy safeguarding self, spouse, and
+                  children with cashless pan-India hospital networks.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Child Education &amp; Milestone Plans:</strong> Guaranteed capital accumulation for higher
+                  education and marriage.</div>
+              </li>
+            </ul>
+            <a href="#contactBooking" class="button secondary">
+              <i class="fa-solid fa-shield-halved"></i> Request Policy Review
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE 5: UNLISTED SHARES -->
+    <section class="service-section-block" id="unlisted-shares">
+      <div class="container">
+        <div class="service-detail-grid">
+          <div>
+            <span class="service-tag-pill"
+              style="background: rgba(212,175,55,0.12); color: var(--accent-gold-light); border: 1px solid rgba(212,175,55,0.3);">
+              Pre-IPO Equity
+            </span>
+            <h2>Unlisted Shares: Access High-Growth Companies Before the IPO</h2>
+            <p class="lead" style="color: var(--text-secondary); margin-bottom: 1rem;">
+              Early Entry. Maximum Potential. Strategic Pre-IPO Investments.
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.65;">
+              Unlisted shares are equity shares of high-potential private enterprises that are not yet listed on public
+              exchanges like the NSE or BSE. Historically, early investors in leading tech, manufacturing, and financial
+              disruptors have captured monumental returns prior to market listings.
+            </p>
+            <ul class="feature-list-check">
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Pre-IPO Advantage:</strong> Gain ownership in tomorrow's market champions before public
+                  bidding drives valuations sky-high.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Curated Institutional Research:</strong> We rigorously assess corporate balance sheets,
+                  governance, revenue growth, and valuation multiples.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Direct Demat Delivery:</strong> All transactions are executed with 100% SEBI-compliant
+                  procedures and shares are directly credited to your CDSL/NSDL Demat account.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Transparent Pricing:</strong> Fair market pricing with clear transaction settlement.</div>
+              </li>
+            </ul>
+            <a href="#contactBooking" class="button primary">
+              <i class="fa-solid fa-arrow-trend-up"></i> Inquire About Pre-IPO Companies
+            </a>
+          </div>
+
+          <div>
+            <div class="service-card-box">
+              <h3 style="color: var(--accent-gold-light); margin-bottom: 1.25rem;">Why Invest Through Sukhmira?</h3>
+              <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1.5rem;">
+                Investing in unlisted shares requires utmost compliance, fair price discovery, and secure escrow
+                handling. Sukhmira Investment Services LLP ensures end-to-end security:
+              </p>
+              <div style="display:flex; flex-direction:column; gap:1rem;">
+                <div style="display:flex; gap:0.75rem; align-items:center;">
+                  <i class="fa-solid fa-check-double" style="color:var(--accent-emerald);"></i>
+                  <span style="color:#fff; font-size:0.9rem;">Verified Demat DIS / Off-market transfer</span>
+                </div>
+                <div style="display:flex; gap:0.75rem; align-items:center;">
+                  <i class="fa-solid fa-check-double" style="color:var(--accent-emerald);"></i>
+                  <span style="color:#fff; font-size:0.9rem;">Extensive sectoral research (Fintech, EV, FMCG)</span>
+                </div>
+                <div style="display:flex; gap:0.75rem; align-items:center;">
+                  <i class="fa-solid fa-check-double" style="color:var(--accent-emerald);"></i>
+                  <span style="color:#fff; font-size:0.9rem;">Dedicated investment advisor guidance</span>
+                </div>
+                <div style="display:flex; gap:0.75rem; align-items:center;">
+                  <i class="fa-solid fa-check-double" style="color:var(--accent-emerald);"></i>
+                  <span style="color:#fff; font-size:0.9rem;">Periodic valuation updates leading up to IPO</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE 6: 54 EC BONDS -->
+    <section class="service-section-block" id="54-ec-bonds" style="background: var(--bg-subtle);">
+      <div class="container">
+        <div class="service-detail-grid reverse">
+          <div>
+            <div class="service-card-box">
+              <h3 style="color: var(--accent-gold-light); margin-bottom: 1.25rem;">Section 54EC Features at a Glance
+              </h3>
+              <div style="display:flex; flex-direction:column; gap:1.25rem;">
+                <div
+                  style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-light); padding-bottom:0.75rem;">
+                  <span style="color:var(--text-muted); font-size:0.9rem;">Maximum Exemption Limit:</span>
+                  <strong style="color:var(--accent-gold-light);">Up to ₹50 Lakhs</strong>
+                </div>
+                <div
+                  style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-light); padding-bottom:0.75rem;">
+                  <span style="color:var(--text-muted); font-size:0.9rem;">Investment Window:</span>
+                  <strong style="color:#fff;">Within 6 Months of Sale</strong>
+                </div>
+                <div
+                  style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-light); padding-bottom:0.75rem;">
+                  <span style="color:var(--text-muted); font-size:0.9rem;">Eligible Issuers:</span>
+                  <strong style="color:var(--accent-emerald-light);">REC, NHAI, PFC, IRFC</strong>
+                </div>
+                <div
+                  style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-light); padding-bottom:0.75rem;">
+                  <span style="color:var(--text-muted); font-size:0.9rem;">Lock-in Period:</span>
+                  <strong style="color:#fff;">5 Years</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <span style="color:var(--text-muted); font-size:0.9rem;">Annual Interest Payout:</span>
+                  <strong style="color:var(--accent-cyan);">5.25% p.a. (Guaranteed)</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span class="service-tag-pill"
+              style="background: rgba(56,189,248,0.12); color: var(--accent-cyan); border: 1px solid rgba(56,189,248,0.3);">
+              Capital Gains Exemption
+            </span>
+            <h2>54 EC Bonds: Save Capital Gains Tax on Property Sale</h2>
+            <p class="lead" style="color: var(--text-secondary); margin-bottom: 1rem;">
+              100% Tax Exemption on Long-Term Capital Gains under Section 54EC of the Income Tax Act.
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.65;">
+              If you have sold a long-term capital asset such as land, commercial premises, or residential real estate,
+              you can save significant capital gains tax by investing in specified government bonds under Section 54EC.
+              <strong>Sukhmira Investment Services LLP</strong> provides fast, seamless paperwork and allocation for
+              leading REC and NHAI bonds.
+            </p>
+            <ul class="feature-list-check">
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Save Up to ₹50 Lakhs:</strong> Claim complete exemption on long-term capital gains tax
+                  without buying another property.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Sovereign &amp; AAA-Rated Safety:</strong> Backed by government entities including REC Ltd
+                  and NHAI (National Highways Authority of India) with zero credit default risk.</div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i>
+                <div><strong>Swift &amp; Seamless Allotment:</strong> We facilitate immediate processing, documentation,
+                  and Demat allotment within the mandatory 6-month statutory window.</div>
+              </li>
+            </ul>
+            <a href="#contactBooking" class="button primary">
+              <i class="fa-solid fa-receipt"></i> Consult for 54 EC Bonds
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consultation Booking Form Section -->
+    <section class="container" style="padding: 5rem 0;" id="contactBooking">
+      <div class="contact-card">
+        <div>
+          <span class="eyebrow"><i class="fa-solid fa-handshake"></i> Strategic Consultation</span>
+          <h2>Connect with Our Wealth Advisory Desk</h2>
+          <p style="margin-bottom: 1.5rem;">
+            Whether you want to start a Mutual Fund SIP, invest in Corporate Fixed Deposits, evaluate Pre-IPO Unlisted
+            Shares, or claim Section 54EC tax exemption, our advisors are here to help.
+          </p>
+
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <i class="fa-solid fa-building" style="color:var(--accent-gold);"></i>
+              <div>
+                <strong style="color:#fff; display:block;">Business Name</strong>
+                <span>Sukhmira Investment Services LLP</span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <i class="fa-solid fa-phone" style="color:var(--accent-emerald);"></i>
+              <div>
+                <strong style="color:#fff; display:block;">Direct Mobile Numbers</strong>
+                <span><a href="tel:9152579597" style="color:var(--accent-emerald-light);">9152579597</a> / <a
+                    href="tel:9152635363" style="color:var(--accent-emerald-light);">9152635363</a></span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <i class="fa-solid fa-envelope" style="color:var(--accent-gold-light);"></i>
+              <div>
+                <strong style="color:#fff; display:block;">Email Address</strong>
+                <span><a href="mailto:sukhmirainvestment@gmail.com"
+                    style="color:var(--accent-gold-light);">sukhmirainvestment@gmail.com</a></span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <i class="fa-solid fa-location-dot" style="color:var(--accent-cyan);"></i>
+              <div>
+                <strong style="color:#fff; display:block;">Office Address</strong>
+                <span>Shop No.1, Plot No.55, Sector 8A, Shree Yashashree CHS Ltd. Airoli, Navi Mumbai, 400708</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-          <div class="hero-card" style="padding: 2.5rem;">
-            <span class="eyebrow" style="margin-bottom: 0.8rem;">Tier I</span>
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Private Wealth</h3>
-            <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">For emerging high-net-worth investors and executives.</p>
-            <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 1.5rem;">
-              0.75% <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ year</span>
-            </div>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-secondary);">
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> $50,000 - $500,000 Portfolio</li>
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Automated Rebalancing</li>
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Client Portal & Analytics</li>
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Bi-annual Advisor Reviews</li>
-            </ul>
-            <a href="signin.html" class="button secondary small" style="width: 100%;">Get Started</a>
+        <form class="contact-form" novalidate>
+          <div class="form-row">
+            <label for="name">Your Full Name *</label>
+            <input id="name" name="name" type="text" placeholder="e.g. Anand Deshmukh" required />
           </div>
 
-          <div class="hero-card" style="padding: 2.5rem; border-color: rgba(212, 175, 55, 0.4); box-shadow: var(--shadow-elevated);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-              <span class="eyebrow" style="margin-bottom: 0;">Tier II (Premier)</span>
-              <span class="hero-live-pill"><span class="hero-live-dot"></span> Popular</span>
-            </div>
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Executive Portfolio</h3>
-            <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">For founders, business owners, and established families.</p>
-            <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: var(--accent-gold-light); margin-bottom: 1.5rem;">
-              0.55% <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ year</span>
-            </div>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-secondary);">
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> $500,000 - $3,000,000 Portfolio</li>
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Direct Custom Indexing</li>
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Dedicated CFA Senior Advisor</li>
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Dynamic Tax-Loss Harvesting</li>
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Quarterly Portfolio Briefings</li>
-            </ul>
-            <a href="contact.html" class="button primary small" style="width: 100%;">Book Private Consultation</a>
+          <div class="form-row">
+            <label for="email">Email Address *</label>
+            <input id="email" name="email" type="email" placeholder="e.g. anand@domain.com" required />
           </div>
 
-          <div class="hero-card" style="padding: 2.5rem;">
-            <span class="eyebrow" style="margin-bottom: 0.8rem;">Tier III</span>
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Institutional & Family Office</h3>
-            <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Multi-generational trusts and enterprise liquidity.</p>
-            <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 1.5rem;">
-              0.40% <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ year</span>
-            </div>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-secondary);">
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> $3,000,000+ Portfolio</li>
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Bespoke Private Credit & PE</li>
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Multi-Entity Trust Advisory</li>
-              <li><i class="fa-solid fa-check" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Unlimited Advisory Access</li>
-            </ul>
-            <a href="contact.html" class="button secondary small" style="width: 100%;">Inquire for Mandate</a>
+          <div class="form-row">
+            <label for="phone">Mobile Number *</label>
+            <input id="phone" name="phone" type="tel" placeholder="e.g. 9820000000" required />
           </div>
-        </div>
+
+          <div class="form-row">
+            <label for="service_interest">Select Financial Service</label>
+            <select id="service_interest" name="service">
+              <option value="Mutual Funds & SIP">Mutual Funds &amp; Systematic Investment Plan (SIP)</option>
+              <option value="Bonds & Debentures">Bonds (Government, Corporate &amp; Tax-Free)</option>
+              <option value="Fixed Deposit (Corporate/Bank)">Fixed Deposits (Bank &amp; AAA Corporate FDs)</option>
+              <option value="Insurance (Life/Health)">Insurance (Term Life &amp; Family Health Plans)</option>
+              <option value="Unlisted Pre-IPO Shares">Unlisted Shares (High-Growth Pre-IPO Companies)</option>
+              <option value="54 EC Capital Gain Bonds">54 EC Capital Gain Bonds (Save Tax up to ₹50L)</option>
+              <option value="Comprehensive Wealth Advisory">Comprehensive Multi-Asset Wealth Advisory</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="message">How can we assist you? *</label>
+            <textarea id="message" name="message" rows="4"
+              placeholder="Briefly specify your investment amount, timeline, or queries..." required></textarea>
+          </div>
+
+          <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" />
+
+          <button class="button primary" type="submit" style="width: 100%;">
+            <i class="fa-solid fa-paper-plane"></i> Submit Inquiry to Sukhmira Team
+          </button>
+          <div class="form-status" aria-live="polite"></div>
+        </form>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Site Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand-col">
         <a class="brand-wrapper" href="index.html">
-          <img src="logo.png" alt="SIS Logo">
+          <img src="logo.png" alt="Sukhmira Investment Services LLP Logo">
           <div class="brand-info">
             <span class="brand-name">SIS</span>
-            <span class="brand-tagline">Sukhmira Investment Services</span>
+            <span class="brand-tagline">Sukhmira Investment Services LLP</span>
           </div>
         </a>
-        <p>Disciplined multi-asset wealth management and fiduciary portfolio advisory.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul class="footer-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About SIS</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="index.html#calculator">Wealth Planner</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Portals</h4>
-        <ul class="footer-links">
-          <li><a href="signin.html">Sign In to Account</a></li>
-          <li><a href="contact.html">Schedule Strategy Call</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Advisory Office</h4>
-        <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6;">
-          450 Lexington Ave, Suite 2800<br>
-          New York, NY 10017<br>
-          advisory@sis-wealth.com
+        <p>
+          Client-focused financial investment services dedicated to helping individuals and businesses make confident
+          financial decisions through disciplined execution and long-term vision.
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.88rem; color: var(--text-secondary);">
+          <strong style="color:#fff;">Office:</strong> Shop No.1, Plot No.55, Sector 8A, Shree Yashashree CHS Ltd.
+          Airoli, Navi Mumbai, 400708
         </p>
       </div>
+
+      <div class="footer-col">
+        <h4>Our Services</h4>
+        <ul class="footer-links">
+          <li><a href="#mutual-funds">Mutual Funds &amp; SIP</a></li>
+          <li><a href="#bonds">Bonds &amp; Debentures</a></li>
+          <li><a href="#fixed-deposits">Fixed Deposits</a></li>
+          <li><a href="#insurance">Insurance Solutions</a></li>
+          <li><a href="#unlisted-shares">Unlisted Shares</a></li>
+          <li><a href="#54-ec-bonds">54 EC Capital Gain Bonds</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home Page</a></li>
+          <li><a href="about.html">About Sukhmira</a></li>
+          <li><a href="index.html#calculator">Wealth &amp; SIP Planner</a></li>
+          <li><a href="contact.html">Contact Office</a></li>
+          <li><a href="signin.html">Client Sign In</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Details</h4>
+        <ul class="footer-links">
+          <li><a href="tel:9152579597"><i class="fa-solid fa-phone" style="color:var(--accent-emerald);"></i>
+              9152579597</a></li>
+          <li><a href="tel:9152635363"><i class="fa-solid fa-phone" style="color:var(--accent-emerald);"></i>
+              9152635363</a></li>
+          <li><a href="mailto:sukhmirainvestment@gmail.com"><i class="fa-solid fa-envelope"
+                style="color:var(--accent-gold);"></i> sukhmirainvestment@gmail.com</a></li>
+          <li><a href="https://wa.me/919152579597" target="_blank" style="color:#25d366;"><i
+                class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a></li>
+          <li><span>Mon – Sat: 9:30 AM – 7:00 PM</span></li>
+        </ul>
+      </div>
     </div>
+
     <div class="container footer-bottom">
-      <p>&copy; 2026 SIS Sukhmira Investment Services. All rights reserved.</p>
+      <p>&copy; 2026 Sukhmira Investment Services LLP. All rights reserved.</p>
+      <p style="font-size:0.8rem; color:var(--text-muted);">
+        Mutual funds and securities are subject to market risks. Please read all scheme-related documents carefully
+        before investing.
+      </p>
     </div>
   </footer>
 
+  <!-- WhatsApp Floating Action Button -->
+  <a href="https://wa.me/919152579597?text=Hello%20Sukhmira%20Investment%20Services,%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+    class="whatsapp-float-btn" target="_blank" aria-label="Chat with Sukhmira Investment Services on WhatsApp"
+    title="Chat with us on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Toast Container -->
   <div class="toast-container" id="toastContainer"></div>
+
   <script src="script.js"></script>
 </body>
+
 </html>
