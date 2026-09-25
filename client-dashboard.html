@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Wealth Portal | SIS</title>
+  <meta name="description" content="SIS Client Portal - Live portfolio monitoring, asset allocation, and wealth management reports.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="client-dashboard-view">
+  <!-- Client Header -->
+  <header class="client-header">
+    <div class="container client-header-inner">
+      <a class="brand-wrapper" href="index.html">
+        <img src="logo.png" alt="SIS Logo">
+        <div class="brand-info">
+          <span class="brand-name">SIS</span>
+          <span class="brand-tagline">Client Wealth Portal</span>
+        </div>
+      </a>
+      
+      <div class="client-header-info">
+        <span class="client-welcome">Welcome, <strong id="clientGreeting">Investor</strong></span>
+        <button class="button small secondary" id="bookConsultationBtn">
+          <i class="fa-solid fa-calendar-check"></i> Book Advisor
+        </button>
+        <button class="button small danger" id="clientLogoutBtn">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="dashboard-grid-layout">
+      <!-- Sidebar Navigation -->
+      <aside class="client-sidebar">
+        <nav class="client-nav">
+          <button class="client-nav-item active" data-section="overview">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Overview</span>
+          </button>
+          <button class="client-nav-item" data-section="holdings">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Holdings</span>
+          </button>
+          <button class="client-nav-item" data-section="transactions">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Transactions</span>
+          </button>
+          <button class="client-nav-item" data-section="calculator">
+            <i class="fa-solid fa-calculator"></i>
+            <span>Wealth Planner</span>
+          </button>
+          <button class="client-nav-item" data-section="profile">
+            <i class="fa-solid fa-user-shield"></i>
+            <span>Profile & Risk</span>
+          </button>
+        </nav>
+
+        <div style="margin-top: 2.5rem; padding: 1.2rem; background: rgba(13, 23, 46, 0.7); border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+          <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent-gold); font-weight: 700;">Dedicated Advisor</span>
+          <p style="font-weight: 600; font-size: 0.95rem; margin-top: 0.3rem; color: #fff;">Marcus Vance, CFA</p>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem;">Chief Investment Strategist</p>
+          <a href="mailto:advisors@sis.com" style="font-size: 0.82rem; color: var(--accent-gold-light); display: flex; align-items: center; gap: 0.4rem;">
+            <i class="fa-solid fa-envelope"></i> advisors@sis.com
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Portal Content -->
+      <section class="client-content">
+        
+        <!-- SECTION: OVERVIEW -->
+        <div class="client-section active" id="overviewSection">
+          <div class="section-header">
+            <div>
+              <span class="eyebrow"><i class="fa-solid fa-shield-halved"></i> Live Portfolio Metrics</span>
+              <h2>Portfolio Performance</h2>
+              <p>Real-time valuation and asset growth trajectory.</p>
+            </div>
+            <div>
+              <button class="button small primary" id="openDepositModalBtn">
+                <i class="fa-solid fa-plus-circle"></i> Add Funds / Invest
+              </button>
+            </div>
+          </div>
+
+          <!-- Stat Cards -->
+          <div class="client-stats">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
+              <div class="stat-data">
+                <strong id="clientTotalVal">$0.00</strong>
+                <p>Total Net Worth</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon emerald"><i class="fa-solid fa-arrow-trend-up"></i></div>
+              <div class="stat-data">
+                <strong id="clientGainVal">+$0.00</strong>
+                <p id="clientGainPct">Cumulative Return (+0.0%)</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon cyan"><i class="fa-solid fa-shield-cat"></i></div>
+              <div class="stat-data">
+                <strong id="clientRiskProfile">Balanced</strong>
+                <p>Risk Profile</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Allocation & Quick View -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; margin-bottom: 2rem;">
+            <div class="hero-card" style="padding: 1.8rem;">
+              <h3 style="margin-bottom: 1.2rem; font-size: 1.15rem; display: flex; align-items: center; justify-content: space-between;">
+                <span>Asset Allocation</span>
+                <span class="hero-live-pill"><span class="hero-live-dot"></span> Balanced</span>
+              </h3>
+              <div id="allocationBreakdownList" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <div class="hero-card" style="padding: 1.8rem;">
+              <h3 style="margin-bottom: 1.2rem; font-size: 1.15rem;">Recent Activity</h3>
+              <div id="quickActivityList" style="display: flex; flex-direction: column; gap: 0.85rem;">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: HOLDINGS -->
+        <div class="client-section" id="holdingsSection">
+          <div class="section-header">
+            <div>
+              <span class="eyebrow">Active Positions</span>
+              <h2>Portfolio Holdings</h2>
+              <p>Granular breakdown of securities, funds, and liquid assets.</p>
+            </div>
+            <button class="button small secondary" id="exportHoldingsCsvBtn">
+              <i class="fa-solid fa-download"></i> Export CSV
+            </button>
+          </div>
+
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Holding / Strategy</th>
+                  <th>Asset Class</th>
+                  <th>Current Value</th>
+                  <th>Cost Basis</th>
+                  <th>Allocation</th>
+                  <th>Return</th>
+                </tr>
+              </thead>
+              <tbody id="clientHoldingsTableBody">
+                <!-- Populated by script -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SECTION: TRANSACTIONS -->
+        <div class="client-section" id="transactionsSection">
+          <div class="section-header">
+            <div>
+              <span class="eyebrow">Audit Trail</span>
+              <h2>Transaction History</h2>
+              <p>Complete ledger of deposits, reallocations, and distributions.</p>
+            </div>
+          </div>
+
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Reference Code</th>
+                  <th>Type</th>
+                  <th>Asset / Class</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody id="clientTransactionsTableBody">
+                <!-- Populated by script -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SECTION: CALCULATOR -->
+        <div class="client-section" id="calculatorSection">
+          <div class="section-header">
+            <div>
+              <span class="eyebrow">Compound Growth Engine</span>
+              <h2>Wealth Projection Simulator</h2>
+              <p>Simulate future wealth creation based on recurring systematic investments.</p>
+            </div>
+          </div>
+
+          <div class="calculator-wrapper">
+            <div class="calc-inputs">
+              <div class="calc-slider-group">
+                <div class="calc-slider-header">
+                  <label for="portalMonthlyInvest">Monthly Systematic Investment</label>
+                  <span class="calc-value-badge" id="portalMonthlyVal">$1,000</span>
+                </div>
+                <input type="range" id="portalMonthlyInvest" class="custom-range" min="100" max="25000" step="100" value="1000">
+              </div>
+
+              <div class="calc-slider-group">
+                <div class="calc-slider-header">
+                  <label for="portalReturnRate">Target Annual Return Rate (%)</label>
+                  <span class="calc-value-badge" id="portalReturnVal">10%</span>
+                </div>
+                <input type="range" id="portalReturnRate" class="custom-range" min="4" max="20" step="0.5" value="10">
+              </div>
+
+              <div class="calc-slider-group">
+                <div class="calc-slider-header">
+                  <label for="portalTimePeriod">Investment Horizon (Years)</label>
+                  <span class="calc-value-badge" id="portalTimeVal">10 Years</span>
+                </div>
+                <input type="range" id="portalTimePeriod" class="custom-range" min="1" max="30" step="1" value="10">
+              </div>
+            </div>
+
+            <div class="calc-results-card">
+              <div class="calc-total-box">
+                <span>Estimated Corpus at Maturity</span>
+                <strong id="portalEstimatedTotal">$206,552</strong>
+              </div>
+
+              <div class="calc-bar-wrapper">
+                <div id="portalBarInvested" class="calc-bar-invested" style="width: 58%;"></div>
+                <div id="portalBarReturns" class="calc-bar-returns" style="width: 42%;"></div>
+              </div>
+
+              <div class="calc-breakdown-list">
+                <div class="calc-breakdown-item">
+                  <span><span class="dot" style="background: #475569;"></span>Total Invested:</span>
+                  <strong id="portalBreakdownInvested">$120,000</strong>
+                </div>
+                <div class="calc-breakdown-item">
+                  <span><span class="dot" style="background: var(--accent-emerald);"></span>Wealth Gain (Profit):</span>
+                  <strong id="portalBreakdownGain" style="color: var(--accent-emerald-light);">+$86,552</strong>
+                </div>
+              </div>
+
+              <button class="button primary small" id="portalApplyPlanBtn">
+                <i class="fa-solid fa-arrow-trend-up"></i> Allocate to this Target Plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: PROFILE -->
+        <div class="client-section" id="profileSection">
+          <div class="section-header">
+            <div>
+              <span class="eyebrow">Client Credentials</span>
+              <h2>Account & Risk Profile</h2>
+              <p>Your registered information and fiduciary risk parameters.</p>
+            </div>
+          </div>
+
+          <div class="hero-card" style="max-width: 650px;">
+            <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+              <div class="form-row">
+                <label>Full Name</label>
+                <input type="text" id="profFullName" disabled>
+              </div>
+              <div class="form-row">
+                <label>Email Address</label>
+                <input type="email" id="profEmail" disabled>
+              </div>
+              <div class="form-row">
+                <label>Contact Phone</label>
+                <input type="text" id="profPhone" disabled>
+              </div>
+              <div class="form-row">
+                <label>Investment Strategy / Risk Profile</label>
+                <input type="text" id="profRisk" disabled>
+              </div>
+              <div class="form-row">
+                <label>Account Status</label>
+                <span class="status-badge active" style="width: fit-content;">Active & Compliant</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal: Deposit / Invest Funds -->
+  <div class="modal-overlay" id="depositModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-circle-dollar-to-slot" style="color: var(--accent-gold);"></i> Request Investment / Deposit</h3>
+        <button class="modal-close-btn" id="closeDepositModal">&times;</button>
+      </div>
+      <form id="depositForm">
+        <div class="form-group">
+          <label for="depType">Transaction Action</label>
+          <select id="depType" required>
+            <option value="Deposit">Cash Deposit / Wire Funding</option>
+            <option value="Buy">Purchase Asset Allocation</option>
+            <option value="Withdrawal">Withdrawal Request</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="depAsset">Target Asset Class</label>
+          <select id="depAsset" required>
+            <option value="Equities">Global Equities</option>
+            <option value="Fixed Income">Fixed Income & Bonds</option>
+            <option value="Alternative">Alternative & Private Equity</option>
+            <option value="Cash">Cash Treasury Liquidity</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="depAmount">Amount ($ USD)</label>
+          <input type="number" id="depAmount" min="500" step="100" placeholder="e.g. 10000" required>
+        </div>
+        <div class="form-group">
+          <label for="depNotes">Instructions / Memo (Optional)</label>
+          <textarea id="depNotes" rows="3" placeholder="Additional instructions for your portfolio advisor..."></textarea>
+        </div>
+        <button type="submit" class="button primary" style="width: 100%; margin-top: 1rem;">
+          Submit Transaction Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Book Advisor Consultation -->
+  <div class="modal-overlay" id="consultationModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-calendar-days" style="color: var(--accent-gold);"></i> Book Strategy Consultation</h3>
+        <button class="modal-close-btn" id="closeConsultationModal">&times;</button>
+      </div>
+      <form id="consultationForm">
+        <div class="form-group">
+          <label for="consultName">Your Name</label>
+          <input type="text" id="consultName" required>
+        </div>
+        <div class="form-group">
+          <label for="consultEmail">Email Address</label>
+          <input type="email" id="consultEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="consultDate">Preferred Date</label>
+          <input type="date" id="consultDate" required>
+        </div>
+        <div class="form-group">
+          <label for="consultTime">Preferred Time</label>
+          <select id="consultTime" required>
+            <option value="10:00 AM EST">10:00 AM EST</option>
+            <option value="02:00 PM EST">02:00 PM EST</option>
+            <option value="04:30 PM EST">04:30 PM EST</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="consultType">Topic / Focus</label>
+          <select id="consultType">
+            <option value="Quarterly Portfolio Review">Quarterly Portfolio Review</option>
+            <option value="Tax Efficiency & Rebalancing">Tax Efficiency & Rebalancing</option>
+            <option value="Retirement Wealth Planning">Retirement Wealth Planning</option>
+            <option value="Risk Management & Hedging">Risk Management & Hedging</option>
+          </select>
+        </div>
+        <button type="submit" class="button primary" style="width: 100%; margin-top: 1rem;">
+          Confirm Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    // Client Portal Controller
+    let clientData = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Check auth status
+      const token = localStorage.getItem('sis_token');
+      if (!token) {
+        window.location.href = 'signin.html';
+        return;
+      }
+
+      await loadClientPortal();
+      setupPortalNavigation();
+      setupModals();
+      initPortalCalculator();
+    });
+
+    async function loadClientPortal() {
+      try {
+        const token = localStorage.getItem('sis_token');
+        const res = await fetch('/api/client/dashboard', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem('sis_token');
+          localStorage.removeItem('sis_user');
+          window.location.href = 'signin.html';
+          return;
+        }
+
+        const data = await res.json();
+        clientData = data;
+        renderClientView(data);
+      } catch (err) {
+        console.error(err);
+        showToast('Error loading portfolio data', 'error');
+      }
+    }
+
+    function renderClientView(data) {
+      const { client, metrics, assetBreakdown, holdings, transactions } = data;
+
+      // Greeting
+      document.getElementById('clientGreeting').textContent = client.full_name || client.username;
+      document.getElementById('clientTotalVal').textContent = '$' + Number(metrics.totalValue || 0).toLocaleString();
+      
+      const gainSign = metrics.totalGain >= 0 ? '+' : '';
+      document.getElementById('clientGainVal').textContent = `${gainSign}$${Number(metrics.totalGain || 0).toLocaleString()}`;
+      document.getElementById('clientGainPct').textContent = `Cumulative Return (${gainSign}${metrics.totalGainPct}%)`;
+      document.getElementById('clientRiskProfile').textContent = client.risk_profile || 'Moderate Growth';
+
+      // Profile Form
+      document.getElementById('profFullName').value = client.full_name || '';
+      document.getElementById('profEmail').value = client.email || '';
+      document.getElementById('profPhone').value = client.phone || 'Not provided';
+      document.getElementById('profRisk').value = client.risk_profile || 'Moderate Growth';
+
+      // Consultation form prepopulate
+      document.getElementById('consultName').value = client.full_name || '';
+      document.getElementById('consultEmail').value = client.email || '';
+
+      // Allocation Breakdown list
+      const allocContainer = document.getElementById('allocationBreakdownList');
+      allocContainer.innerHTML = '';
+      const total = metrics.totalValue || 1;
+      
+      const colors = {
+        'Equities': '#d4af37',
+        'Fixed Income': '#38bdf8',
+        'Alternative': '#10b981',
+        'Cash': '#a78bfa'
+      };
+
+      for (const [assetClass, val] of Object.entries(assetBreakdown || {})) {
+        const pct = ((val / total) * 100).toFixed(1);
+        const col = colors[assetClass] || '#d4af37';
+        allocContainer.innerHTML += `
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:0.9rem; margin-bottom:0.35rem;">
+              <span><strong>${assetClass}</strong></span>
+              <span>$${Number(val).toLocaleString()} (${pct}%)</span>
+            </div>
+            <div style="height:8px; background:rgba(255,255,255,0.06); border-radius:4px; overflow:hidden;">
+              <div style="width:${pct}%; height:100%; background:${col}; border-radius:4px;"></div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Quick Activity List
+      const quickList = document.getElementById('quickActivityList');
+      if (transactions && transactions.length) {
+        quickList.innerHTML = transactions.slice(0, 4).map(tx => `
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div>
+              <strong style="color:#fff; font-size:0.92rem;">${tx.type} - ${tx.asset_class || 'Portfolio'}</strong>
+              <div style="font-size:0.8rem; color:var(--text-muted);">${tx.date}</div>
+            </div>
+            <div style="text-align:right;">
+              <strong style="color:var(--accent-gold-light);">$${Number(tx.amount).toLocaleString()}</strong>
+              <div><span class="status-badge ${tx.status.toLowerCase()}">${tx.status}</span></div>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        quickList.innerHTML = `<p style="color:var(--text-muted);">No recent transactions.</p>`;
+      }
+
+      // Holdings Table
+      const holdingsTbody = document.getElementById('clientHoldingsTableBody');
+      holdingsTbody.innerHTML = (holdings || []).map(h => {
+        const sign = h.performance_pct >= 0 ? '+' : '';
+        const perfClass = h.performance_pct >= 0 ? 'performance-positive' : 'performance-negative';
+        return `
+          <tr>
+            <td><strong>${h.holding_name}</strong></td>
+            <td><span class="status-badge in-review">${h.asset_class}</span></td>
+            <td><strong>$${Number(h.current_value).toLocaleString()}</strong></td>
+            <td>$${Number(h.invested_value).toLocaleString()}</td>
+            <td>${h.allocation_pct}%</td>
+            <td><span class="${perfClass}">${sign}${h.performance_pct}%</span></td>
+          </tr>
+        `;
+      }).join('');
+
+      // Full Transactions Table
+      const txTbody = document.getElementById('clientTransactionsTableBody');
+      txTbody.innerHTML = (transactions || []).map(tx => `
+        <tr>
+          <td><code>${tx.tx_code || 'TXN-' + tx.id}</code></td>
+          <td><strong>${tx.type}</strong></td>
+          <td>${tx.asset_class || 'General'}</td>
+          <td><strong>$${Number(tx.amount).toLocaleString()}</strong></td>
+          <td>${tx.date}</td>
+          <td><span class="status-badge ${tx.status.toLowerCase()}">${tx.status}</span></td>
+          <td>${tx.description || '-'}</td>
+        </tr>
+      `).join('');
+    }
+
+    function setupPortalNavigation() {
+      const navItems = document.querySelectorAll('.client-nav-item');
+      const sections = document.querySelectorAll('.client-section');
+
+      navItems.forEach(item => {
+        item.addEventListener('click', () => {
+          navItems.forEach(i => i.classList.remove('active'));
+          sections.forEach(s => s.classList.remove('active'));
+
+          item.classList.add('active');
+          const target = item.dataset.section + 'Section';
+          const el = document.getElementById(target);
+          if (el) el.classList.add('active');
+        });
+      });
+
+      document.getElementById('clientLogoutBtn')?.addEventListener('click', async () => {
+        try {
+          await fetch('/api/auth/logout', { method: 'POST' });
+        } catch (e) {}
+        localStorage.removeItem('sis_token');
+        localStorage.removeItem('sis_user');
+        window.location.href = 'index.html';
+      });
+
+      // Export CSV
+      document.getElementById('exportHoldingsCsvBtn')?.addEventListener('click', () => {
+        if (!clientData || !clientData.holdings) return;
+        let csv = 'Holding,Asset Class,Current Value,Invested Value,Allocation,Performance\n';
+        clientData.holdings.forEach(h => {
+          csv += `"${h.holding_name}","${h.asset_class}",${h.current_value},${h.invested_value},${h.allocation_pct}%,${h.performance_pct}%\n`;
+        });
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `SIS_Portfolio_${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+        showToast('Portfolio statement exported', 'info');
+      });
+    }
+
+    function setupModals() {
+      const depModal = document.getElementById('depositModal');
+      const openDepBtn = document.getElementById('openDepositModalBtn');
+      const closeDepBtn = document.getElementById('closeDepositModal');
+
+      openDepBtn?.addEventListener('click', () => depModal.classList.add('open'));
+      closeDepBtn?.addEventListener('click', () => depModal.classList.remove('open'));
+
+      const consultModal = document.getElementById('consultationModal');
+      const openConsultBtn = document.getElementById('bookConsultationBtn');
+      const closeConsultBtn = document.getElementById('closeConsultationModal');
+
+      openConsultBtn?.addEventListener('click', () => consultModal.classList.add('open'));
+      closeConsultBtn?.addEventListener('click', () => consultModal.classList.remove('open'));
+
+      // Submit Deposit Form
+      document.getElementById('depositForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const type = document.getElementById('depType').value;
+        const asset_class = document.getElementById('depAsset').value;
+        const amount = document.getElementById('depAmount').value;
+        const description = document.getElementById('depNotes').value;
+
+        try {
+          const token = localStorage.getItem('sis_token');
+          const res = await fetch('/api/client/transactions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ type, asset_class, amount, description })
+          });
+
+          const data = await res.json();
+          if (res.ok) {
+            showToast(data.message || 'Transaction requested', 'success');
+            depModal.classList.remove('open');
+            document.getElementById('depositForm').reset();
+            await loadClientPortal();
+          } else {
+            showToast(data.error || 'Failed to submit', 'error');
+          }
+        } catch (err) {
+          showToast('Network error submitting request', 'error');
+        }
+      });
+
+      // Submit Consultation Form
+      document.getElementById('consultationForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('consultName').value;
+        const email = document.getElementById('consultEmail').value;
+        const preferred_date = document.getElementById('consultDate').value;
+        const preferred_time = document.getElementById('consultTime').value;
+        const service_type = document.getElementById('consultType').value;
+
+        try {
+          const res = await fetch('/api/consultations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, preferred_date, preferred_time, service_type })
+          });
+          const data = await res.json();
+          if (res.ok) {
+            showToast('Consultation confirmed! Our advisor will email you.', 'success');
+            consultModal.classList.remove('open');
+          } else {
+            showToast(data.error || 'Failed to book consultation', 'error');
+          }
+        } catch (err) {
+          showToast('Failed to book consultation', 'error');
+        }
+      });
+    }
+
+    function initPortalCalculator() {
+      const monthlyInput = document.getElementById('portalMonthlyInvest');
+      const returnInput = document.getElementById('portalReturnRate');
+      const timeInput = document.getElementById('portalTimePeriod');
+
+      const monthlyVal = document.getElementById('portalMonthlyVal');
+      const returnVal = document.getElementById('portalReturnVal');
+      const timeVal = document.getElementById('portalTimeVal');
+
+      const estTotal = document.getElementById('portalEstimatedTotal');
+      const barInvested = document.getElementById('portalBarInvested');
+      const barReturns = document.getElementById('portalBarReturns');
+      const breakdownInvested = document.getElementById('portalBreakdownInvested');
+      const breakdownGain = document.getElementById('portalBreakdownGain');
+
+      function calculate() {
+        const P = Number(monthlyInput.value);
+        const r = Number(returnInput.value) / 100 / 12;
+        const t = Number(timeInput.value) * 12;
+
+        monthlyVal.textContent = '$' + P.toLocaleString();
+        returnVal.textContent = returnInput.value + '%';
+        timeVal.textContent = timeInput.value + ' Years';
+
+        const totalInvested = P * t;
+        const futureValue = P * ((Math.pow(1 + r, t) - 1) / r) * (1 + r);
+        const gains = Math.max(futureValue - totalInvested, 0);
+
+        estTotal.textContent = '$' + Math.round(futureValue).toLocaleString();
+        breakdownInvested.textContent = '$' + Math.round(totalInvested).toLocaleString();
+        breakdownGain.textContent = '+$' + Math.round(gains).toLocaleString();
+
+        const investedPct = (totalInvested / futureValue) * 100;
+        barInvested.style.width = `${Math.min(investedPct, 100)}%`;
+        barReturns.style.width = `${Math.max(100 - investedPct, 0)}%`;
+      }
+
+      monthlyInput?.addEventListener('input', calculate);
+      returnInput?.addEventListener('input', calculate);
+      timeInput?.addEventListener('input', calculate);
+      calculate();
+
+      document.getElementById('portalApplyPlanBtn')?.addEventListener('click', () => {
+        showToast('Target simulation saved to your profile!', 'success');
+      });
+    }
+  </script>
+</body>
+</html>

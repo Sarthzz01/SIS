@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Private Advisory | SIS</title>
+  <meta name="description" content="Connect with SIS's private wealth management specialists for a complimentary portfolio consultation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-wrapper" href="index.html">
+        <img src="logo.png" alt="SIS logo">
+        <div class="brand-info">
+          <span class="brand-name">SIS</span>
+          <span class="brand-tagline">Sukhmira Investment Services</span>
+        </div>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="index.html#calculator">Wealth Planner</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="signin.html" class="button small primary signin-nav-link">Sign In</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Contact Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><i class="fa-solid fa-headset"></i> Private Client Services</span>
+          <h1>Initiate a confidential portfolio discussion.</h1>
+          <p>
+            Our senior portfolio directors offer an introductory 45-minute portfolio consultation to evaluate your asset allocation, fee structure, and risk exposures.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#contactCard">
+              <i class="fa-solid fa-pen-to-square"></i> Send an Inquiry
+            </a>
+            <a class="button secondary" href="tel:+15550192834">
+              <i class="fa-solid fa-phone"></i> Call Direct Concierge
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <div class="hero-card-title">
+                <i class="fa-solid fa-building-columns"></i> Manhattan Advisory Office
+              </div>
+              <span class="hero-live-pill"><span class="hero-live-dot"></span> Open</span>
+            </div>
+            <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">
+              Located in Midtown Manhattan, welcoming clients for in-person strategy sessions and secure digital video reviews globally.
+            </p>
+            <div style="background: rgba(13,23,46,0.8); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.2rem;">
+              <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.3rem;">Advisory Desk Hours</div>
+              <strong style="color:#fff; font-size:1rem;">Monday – Friday: 8:30 AM – 6:30 PM EST</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="contact-preview container" id="contactCard">
+      <div class="contact-card">
+        <div>
+          <span class="eyebrow"><i class="fa-solid fa-shield"></i> Fiduciary Desk</span>
+          <h2>Direct Communication Channels</h2>
+          <p style="margin-bottom: 2rem;">
+            All inquiries are held in strict institutional confidence and routed directly to a partner advisor.
+          </p>
+
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <strong style="color:#fff; display:block;">Physical Address</strong>
+                <span>450 Lexington Avenue, Suite 2800<br>New York, NY 10017</span>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <strong style="color:#fff; display:block;">Email Inquiries</strong>
+                <span>advisory@sis-wealth.com<br>info@sis.com</span>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <strong style="color:#fff; display:block;">Telephone Concierge</strong>
+                <span>+1 (555) 019-2834</span>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <i class="fa-solid fa-calendar-check"></i>
+              <div>
+                <strong style="color:#fff; display:block;">Direct Booking</strong>
+                <span>Instant scheduling available for qualified portfolios ($100K+)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <form class="contact-form" novalidate>
+            <div class="form-row">
+              <label for="name">Legal Full Name *</label>
+              <input id="name" name="name" type="text" placeholder="e.g. Eleanor Vance" required />
+            </div>
+
+            <div class="form-row">
+              <label for="email">Email Address *</label>
+              <input id="email" name="email" type="email" placeholder="e.g. eleanor@vancecapital.org" required />
+            </div>
+
+            <div class="form-row">
+              <label for="phone">Contact Telephone</label>
+              <input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" />
+            </div>
+
+            <div class="form-row">
+              <label for="service_interest">Area of Advisory Interest</label>
+              <select id="service_interest" name="service">
+                <option value="Private Wealth Management">Private Wealth Management ($250K+)</option>
+                <option value="Retirement Wealth & Passive Distribution">Retirement Wealth & Passive Distribution</option>
+                <option value="Corporate Reserves & Liquid Treasury">Corporate Reserves & Liquid Treasury</option>
+                <option value="Tax Optimization & Rebalancing">Tax Optimization & Rebalancing</option>
+                <option value="General Fiduciary Inquiry">General Fiduciary Inquiry</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="message">Your Objectives & Message *</label>
+              <textarea id="message" name="message" rows="5" placeholder="Share your investment horizon, existing portfolio structure, or questions..." required></textarea>
+            </div>
+
+            <!-- Honeypot for spam detection -->
+            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" />
+
+            <div class="form-actions">
+              <button class="button primary" type="submit" style="width: 100%;">
+                <i class="fa-solid fa-paper-plane"></i> Send Secure Message
+              </button>
+              <div class="form-status" aria-live="polite"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <a class="brand-wrapper" href="index.html">
+          <img src="logo.png" alt="SIS Logo">
+          <div class="brand-info">
+            <span class="brand-name">SIS</span>
+            <span class="brand-tagline">Sukhmira Investment Services</span>
+          </div>
+        </a>
+        <p>Disciplined multi-asset wealth management and fiduciary portfolio advisory.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About SIS</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="index.html#calculator">Wealth Planner</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Portals</h4>
+        <ul class="footer-links">
+          <li><a href="signin.html">Sign In to Account</a></li>
+          <li><a href="contact.html">Schedule Strategy Call</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Advisory Office</h4>
+        <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6;">
+          450 Lexington Ave, Suite 2800<br>
+          New York, NY 10017<br>
+          advisory@sis-wealth.com
+        </p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 SIS Sukhmira Investment Services. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="script.js"></script>
+</body>
+</html>

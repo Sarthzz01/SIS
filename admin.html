@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Executive Console | SIS</title>
+  <meta name="description" content="SIS Wealth Advisory Administrative Console - Client database, AUM analytics, portfolio management.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Admin Dashboard View -->
+  <div id="adminDashboardView" class="admin-dashboard-view">
+    <header class="admin-header">
+      <div class="container admin-header-inner">
+        <a class="brand-wrapper" href="index.html">
+          <img src="logo.png" alt="SIS Logo">
+          <div class="brand-info">
+            <span class="brand-name">SIS</span>
+            <span class="brand-tagline">Executive Management Console</span>
+          </div>
+        </a>
+        <div class="admin-header-info">
+          <span class="admin-welcome">Advisory Session: <strong id="adminName">Senior Portfolio Manager</strong></span>
+          <a href="index.html" class="button small secondary">
+            <i class="fa-solid fa-globe"></i> View Site
+          </a>
+          <button class="button small danger" id="adminLogoutBtn">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="dashboard-grid-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar">
+          <nav class="admin-nav">
+            <button class="admin-nav-item active" data-section="overview">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Console Overview</span>
+            </button>
+            <button class="admin-nav-item" data-section="clients">
+              <i class="fa-solid fa-users"></i>
+              <span>Client Directory</span>
+            </button>
+            <button class="admin-nav-item" data-section="portfolios">
+              <i class="fa-solid fa-chart-pie"></i>
+              <span>AUM Portfolios</span>
+            </button>
+            <button class="admin-nav-item" data-section="transactions">
+              <i class="fa-solid fa-money-bill-transfer"></i>
+              <span>Transactions</span>
+            </button>
+            <button class="admin-nav-item" data-section="inquiries">
+              <i class="fa-solid fa-envelope-open-text"></i>
+              <span id="navInquiriesLabel">Inquiries & Leads</span>
+            </button>
+          </nav>
+
+          <div style="margin-top: 2rem; padding: 1rem; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.2); border-radius: var(--radius-md);">
+            <div style="display:flex; align-items:center; gap:0.5rem; color:var(--accent-gold); font-size:0.8rem; font-weight:700;">
+              <i class="fa-solid fa-circle-check"></i> SQLite Live DB
+            </div>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.3rem;">
+              WAL Mode active. Immediate disk persistence.
+            </p>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <section class="admin-content">
+          
+          <!-- SECTION 1: OVERVIEW -->
+          <div class="admin-section active" id="overviewSection">
+            <div class="section-header">
+              <div>
+                <span class="eyebrow"><i class="fa-solid fa-bolt"></i> Live Intelligence</span>
+                <h2>Executive Summary</h2>
+                <p>Institutional assets under management and operational pipeline.</p>
+              </div>
+              <div>
+                <button class="button small primary" id="quickAddClientBtn">
+                  <i class="fa-solid fa-user-plus"></i> New Client Onboarding
+                </button>
+              </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="admin-stats">
+              <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-building-columns"></i></div>
+                <div class="stat-data">
+                  <strong id="statTotalAUM">$0.00</strong>
+                  <p>Assets Under Mgmt (AUM)</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon emerald"><i class="fa-solid fa-users"></i></div>
+                <div class="stat-data">
+                  <strong id="statTotalClients">0</strong>
+                  <p>Active Wealth Clients</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon cyan"><i class="fa-solid fa-chart-simple"></i></div>
+                <div class="stat-data">
+                  <strong id="statAvgPortfolio">$0</strong>
+                  <p>Average Client AUM</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-inbox"></i></div>
+                <div class="stat-data">
+                  <strong id="statNewInquiries" style="color: var(--accent-gold);">0</strong>
+                  <p>Unread Investor Leads</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.8rem;">
+              <div class="hero-card" style="padding: 1.8rem;">
+                <h3 style="margin-bottom: 1.2rem; font-size: 1.15rem; display:flex; justify-content:space-between; align-items:center;">
+                  <span>Asset Distribution By Class</span>
+                  <span style="font-size:0.8rem; color:var(--text-muted);">SIS Global Assets</span>
+                </h3>
+                <div id="overviewAssetAllocation" style="display: flex; flex-direction: column; gap: 1.1rem;">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <div class="hero-card" style="padding: 1.8rem;">
+                <h3 style="margin-bottom: 1.2rem; font-size: 1.15rem;">Fast Actions</h3>
+                <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                  <button class="button secondary small" id="openAddHoldingBtn" style="justify-content: flex-start;">
+                    <i class="fa-solid fa-folder-plus" style="color:var(--accent-gold);"></i> Add Portfolio Allocation Holding
+                  </button>
+                  <button class="button secondary small" id="openAddTxBtn" style="justify-content: flex-start;">
+                    <i class="fa-solid fa-receipt" style="color:var(--accent-emerald);"></i> Record Manual Client Transaction
+                  </button>
+                  <button class="button secondary small" id="viewInquiriesFastBtn" style="justify-content: flex-start;">
+                    <i class="fa-solid fa-envelope" style="color:var(--accent-cyan);"></i> Inspect Inbound Consultation Requests
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 2: CLIENT DIRECTORY -->
+          <div class="admin-section" id="clientsSection">
+            <div class="section-header">
+              <div>
+                <span class="eyebrow">Client Database</span>
+                <h2>Private Wealth Clients</h2>
+                <p>Manage investor records, portfolio assignments, and contact channels.</p>
+              </div>
+              <button class="button small primary" id="openAddClientModalBtn">
+                <i class="fa-solid fa-user-plus"></i> Add Client
+              </button>
+            </div>
+
+            <div class="admin-table-wrapper">
+              <div class="table-toolbar">
+                <div class="table-search">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input type="text" id="clientSearchInput" placeholder="Search by name, email, or phone...">
+                </div>
+                <div style="color: var(--text-muted); font-size: 0.85rem;" id="clientCountBadge">
+                  Showing clients
+                </div>
+              </div>
+
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Client Name</th>
+                    <th>Email Address</th>
+                    <th>Phone</th>
+                    <th>Risk Profile</th>
+                    <th>Portfolio AUM</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminClientsTableBody">
+                  <!-- Populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SECTION 3: PORTFOLIOS -->
+          <div class="admin-section" id="portfoliosSection">
+            <div class="section-header">
+              <div>
+                <span class="eyebrow">Asset Management</span>
+                <h2>Active Portfolio Holdings</h2>
+                <p>Detailed view of positions across equities, fixed income, and alternatives.</p>
+              </div>
+              <button class="button small primary" id="openNewHoldingModalBtn">
+                <i class="fa-solid fa-plus"></i> Add Holding Position
+              </button>
+            </div>
+
+            <div class="admin-table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Investor</th>
+                    <th>Strategy / Holding</th>
+                    <th>Asset Class</th>
+                    <th>Valuation</th>
+                    <th>Alloc %</th>
+                    <th>Performance</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminPortfoliosTableBody">
+                  <!-- Populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SECTION 4: TRANSACTIONS -->
+          <div class="admin-section" id="transactionsSection">
+            <div class="section-header">
+              <div>
+                <span class="eyebrow">Audit Ledger</span>
+                <h2>Transaction Management</h2>
+                <p>Reconcile investment trades, cash movements, and investor dividends.</p>
+              </div>
+              <button class="button small primary" id="openNewTxModalBtn">
+                <i class="fa-solid fa-plus"></i> Record Transaction
+              </button>
+            </div>
+
+            <div class="admin-table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Ref ID</th>
+                    <th>Investor</th>
+                    <th>Type</th>
+                    <th>Asset Class</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Approval</th>
+                  </tr>
+                </thead>
+                <tbody id="adminTransactionsTableBody">
+                  <!-- Populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SECTION 5: INQUIRIES & LEADS -->
+          <div class="admin-section" id="inquiriesSection">
+            <div class="section-header">
+              <div>
+                <span class="eyebrow">Business Development</span>
+                <h2>Investor Inquiries & Leads</h2>
+                <p>Submissions received from the public contact forms and consultation requests.</p>
+              </div>
+            </div>
+
+            <div class="admin-table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Date Received</th>
+                    <th>Lead Name</th>
+                    <th>Email & Phone</th>
+                    <th>Interest</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminInquiriesTableBody">
+                  <!-- Populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal: Add New Client -->
+  <div class="modal-overlay" id="addClientModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-user-plus" style="color:var(--accent-gold);"></i> Onboard New Wealth Client</h3>
+        <button class="modal-close-btn" id="closeAddClientModal">&times;</button>
+      </div>
+      <form id="addClientForm">
+        <div class="form-group">
+          <label for="newClientName">Full Name</label>
+          <input type="text" id="newClientName" placeholder="e.g. Victoria Sterling" required>
+        </div>
+        <div class="form-group">
+          <label for="newClientEmail">Email Address</label>
+          <input type="email" id="newClientEmail" placeholder="e.g. v.sterling@domain.com" required>
+        </div>
+        <div class="form-group">
+          <label for="newClientPhone">Contact Phone</label>
+          <input type="tel" id="newClientPhone" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label for="newClientDeposit">Initial Capital Allocation ($ USD)</label>
+          <input type="number" id="newClientDeposit" min="10000" step="5000" value="100000" required>
+        </div>
+        <div class="form-group">
+          <label for="newClientRisk">Risk Mandate</label>
+          <select id="newClientRisk">
+            <option value="Aggressive Growth">Aggressive Growth</option>
+            <option value="Moderate Growth" selected>Moderate Growth</option>
+            <option value="Balanced Wealth">Balanced Wealth</option>
+            <option value="Capital Preservation">Capital Preservation</option>
+          </select>
+        </div>
+        <button type="submit" class="button primary" style="width: 100%; margin-top: 1rem;">
+          Create Client Portfolio
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Holding -->
+  <div class="modal-overlay" id="addHoldingModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-layer-group" style="color:var(--accent-gold);"></i> Add Portfolio Position</h3>
+        <button class="modal-close-btn" id="closeAddHoldingModal">&times;</button>
+      </div>
+      <form id="addHoldingForm">
+        <div class="form-group">
+          <label for="holdingClientSelect">Select Client</label>
+          <select id="holdingClientSelect" required>
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="holdingAssetClass">Asset Class</label>
+          <select id="holdingAssetClass" required>
+            <option value="Equities">Equities</option>
+            <option value="Fixed Income">Fixed Income</option>
+            <option value="Alternative">Alternative Assets</option>
+            <option value="Cash">Cash Treasury</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="holdingName">Holding Strategy Name</label>
+          <input type="text" id="holdingName" placeholder="e.g. S&P 500 Alpha Fund" required>
+        </div>
+        <div class="form-group">
+          <label for="holdingValue">Current Value ($ USD)</label>
+          <input type="number" id="holdingValue" min="1000" step="500" required>
+        </div>
+        <div class="form-group">
+          <label for="holdingAlloc">Allocation %</label>
+          <input type="number" id="holdingAlloc" min="1" max="100" value="25" required>
+        </div>
+        <div class="form-group">
+          <label for="holdingPerf">Performance Return %</label>
+          <input type="number" id="holdingPerf" step="0.1" value="7.5">
+        </div>
+        <button type="submit" class="button primary" style="width: 100%; margin-top: 1rem;">
+          Commit Position to Database
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Record Transaction -->
+  <div class="modal-overlay" id="addTxModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-receipt" style="color:var(--accent-gold);"></i> Record Client Transaction</h3>
+        <button class="modal-close-btn" id="closeAddTxModal">&times;</button>
+      </div>
+      <form id="addTxForm">
+        <div class="form-group">
+          <label for="txClientSelect">Client Account</label>
+          <select id="txClientSelect" required>
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="txType">Transaction Type</label>
+          <select id="txType" required>
+            <option value="Buy">Buy Asset</option>
+            <option value="Sell">Sell / Liquidate</option>
+            <option value="Deposit">Deposit Funding</option>
+            <option value="Dividend">Dividend Distribution</option>
+            <option value="Withdrawal">Withdrawal</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="txAsset">Asset Category</label>
+          <select id="txAsset">
+            <option value="Equities">Equities</option>
+            <option value="Fixed Income">Fixed Income</option>
+            <option value="Alternative">Alternative</option>
+            <option value="Cash">Cash Liquidity</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="txAmount">Amount ($ USD)</label>
+          <input type="number" id="txAmount" min="100" step="500" required>
+        </div>
+        <div class="form-group">
+          <label for="txStatus">Execution Status</label>
+          <select id="txStatus">
+            <option value="Completed">Completed</option>
+            <option value="Pending">Pending Review</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="txDesc">Description / Memo</label>
+          <input type="text" id="txDesc" placeholder="e.g. Strategic rebalancing buy">
+        </div>
+        <button type="submit" class="button primary" style="width: 100%; margin-top: 1rem;">
+          Submit & Reconcile
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    // Admin Dashboard Controller
+    let cachedClients = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initAdminAuth();
+      setupAdminNavigation();
+      setupAdminModals();
+    });
+
+    function getAdminToken() {
+      return localStorage.getItem('sis_token');
+    }
+
+    function initAdminAuth() {
+      const loginForm = document.getElementById('adminLoginForm');
+      const loginError = document.getElementById('adminLoginError');
+      const loginView = document.getElementById('adminLoginView');
+      const dashView = document.getElementById('adminDashboardView');
+      const logoutBtn = document.getElementById('adminLogoutBtn');
+
+      // Check existing token
+      const existingUser = JSON.parse(localStorage.getItem('sis_user') || 'null');
+      if (existingUser && existingUser.role === 'admin' && getAdminToken()) {
+        showAdminConsole(existingUser);
+      } else {
+        // Redirect to unified Sign In page
+        window.location.href = 'signin.html';
+        return;
+      }
+
+      logoutBtn?.addEventListener('click', async () => {
+        try { await fetch('/api/auth/logout', { method: 'POST' }); } catch (e) {}
+        localStorage.removeItem('sis_token');
+        localStorage.removeItem('sis_user');
+        window.location.href = 'signin.html';
+      });
+    }
+
+    function showAdminConsole(user) {
+      const nameEl = document.getElementById('adminName');
+      if (nameEl) nameEl.textContent = user.full_name || user.username;
+      loadAllAdminData();
+    }
+
+    async function loadAllAdminData() {
+      await Promise.all([
+        loadMetrics(),
+        loadClients(),
+        loadPortfolios(),
+        loadTransactions(),
+        loadInquiries()
+      ]);
+    }
+
+    async function loadMetrics() {
+      try {
+        const res = await fetch('/api/admin/metrics', {
+          headers: { 'Authorization': `Bearer ${getAdminToken()}` }
+        });
+        if (!res.ok) return;
+        const m = await res.json();
+
+        document.getElementById('statTotalAUM').textContent = '$' + (m.totalAUM / 1000000).toFixed(2) + 'M';
+        document.getElementById('statTotalClients').textContent = m.totalClients;
+        document.getElementById('statAvgPortfolio').textContent = '$' + (m.avgPortfolio / 1000).toFixed(0) + 'K';
+        document.getElementById('statNewInquiries').textContent = m.newInquiries;
+      } catch (e) {
+        console.error('Metrics fetch error:', e);
+      }
+    }
+
+    async function loadClients(search = '') {
+      try {
+        const url = search ? `/api/admin/clients?search=${encodeURIComponent(search)}` : '/api/admin/clients';
+        const res = await fetch(url, {
+          headers: { 'Authorization': `Bearer ${getAdminToken()}` }
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        cachedClients = data.clients || [];
+
+        renderClientsTable(cachedClients);
+        populateClientDropdowns(cachedClients);
+      } catch (e) {
+        console.error('Clients fetch error:', e);
+      }
+    }
+
+    function renderClientsTable(clients) {
+      const tbody = document.getElementById('adminClientsTableBody');
+      document.getElementById('clientCountBadge').textContent = `Showing ${clients.length} clients`;
+
+      if (!clients.length) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2rem; color:var(--text-muted);">No matching clients found.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = clients.map(c => `
+        <tr>
+          <td><strong style="color:#fff;">${c.full_name}</strong></td>
+          <td>${c.email}</td>
+          <td>${c.phone || '-'}</td>
+          <td><span class="status-badge in-review">${c.risk_profile || 'Balanced'}</span></td>
+          <td><strong style="color:var(--accent-gold-light);">$${Number(c.portfolioValue).toLocaleString()}</strong></td>
+          <td><span class="status-badge ${c.status.toLowerCase()}">${c.status}</span></td>
+          <td>
+            <div class="table-actions">
+              <button class="action-btn delete" onclick="deleteClient(${c.id})" title="Delete Client"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function populateClientDropdowns(clients) {
+      const selects = [document.getElementById('holdingClientSelect'), document.getElementById('txClientSelect')];
+      selects.forEach(sel => {
+        if (!sel) return;
+        sel.innerHTML = clients.map(c => `<option value="${c.id}">${c.full_name} (${c.email})</option>`).join('');
+      });
+    }
+
+    async function deleteClient(id) {
+      if (!confirm('Are you sure you want to delete this client account and all related portfolio records?')) return;
+      try {
+        const res = await fetch(`/api/admin/clients/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${getAdminToken()}` }
+        });
+        if (res.ok) {
+          showToast('Client deleted successfully', 'success');
+          loadMetrics();
+          loadClients();
+          loadPortfolios();
+        } else {
+          showToast('Failed to delete client', 'error');
+        }
+      } catch (e) {
+        showToast('Error deleting client', 'error');
+      }
+    }
+    window.deleteClient = deleteClient;
+
+    async function loadPortfolios() {
+      try {
+        const res = await fetch('/api/admin/portfolios', {
+          headers: { 'Authorization': `Bearer ${getAdminToken()}` }
+        });
+        if (!res.ok) return;
+        const { portfolios, assetSummary } = await res.json();
+
+        // Render overview distribution
+        const distContainer = document.getElementById('overviewAssetAllocation');
+        if (distContainer && assetSummary) {
+          const totalVal = assetSummary.reduce((sum, a) => sum + a.total_value, 0) || 1;
+          const classColors = { 'Equities': '#d4af37', 'Fixed Income': '#38bdf8', 'Alternative': '#10b981', 'Cash': '#a78bfa' };
+
+          distContainer.innerHTML = assetSummary.map(a => {
+            const pct = ((a.total_value / totalVal) * 100).toFixed(1);
+            const col = classColors[a.asset_class] || '#d4af37';
+            return `
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:0.9rem; margin-bottom:0.35rem;">
+                  <span><strong>${a.asset_class}</strong> (${a.holdings_count} positions)</span>
+                  <strong style="color:var(--text-main);">$${(a.total_value / 1000000).toFixed(2)}M (${pct}%)</strong>
+                </div>
+                <div style="height:8px; background:rgba(255,255,255,0.06); border-radius:4px; overflow:hidden;">
+                  <div style="width:${pct}%; height:100%; background:${col}; border-radius:4px;"></div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        // Render table
+        const tbody = document.getElementById('adminPortfoliosTableBody');
+        tbody.innerHTML = portfolios.map(p => {
+          const sign = p.performance_pct >= 0 ? '+' : '';
+          const perfClass = p.performance_pct >= 0 ? 'performance-positive' : 'performance-negative';
+          return `
+            <tr>
+              <td><strong>${p.client_name}</strong><br><span style="font-size:0.75rem; color:var(--text-muted);">${p.client_email}</span></td>
+              <td>${p.holding_name}</td>
+              <td><span class="status-badge in-review">${p.asset_class}</span></td>
+              <td><strong>$${Number(p.current_value).toLocaleString()}</strong></td>
+              <td>${p.allocation_pct}%</td>
+              <td><span class="${perfClass}">${sign}${p.performance_pct}%</span></td>
+              <td>
+                <button class="action-btn delete" onclick="deleteHolding(${p.id})" title="Delete Position"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      } catch (e) {
+        console.error('Portfolios error:', e);
+      }
+    }
+
+    async function deleteHolding(id) {
+      if (!confirm('Remove this holding position?')) return;
+      try {
+        const res = await fetch(`/api/admin/portfolios/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${getAdminToken()}` }
+        });
+        showToast('Holding removed', 'info');
+        loadPortfolios();
+        loadMetrics();
+      } catch (e) {
+        showToast('Error removing holding', 'error');
+      }
+    }
+    window.deleteHolding = deleteHolding;
+
+    async function loadTransactions() {
+      try {
+        const res = await fetch('/api/admin/transactions', {
+          headers: { 'Authorization': `Bearer ${getAdminToken()}` }
+        });
+        if (!res.ok) return;
+        const { transactions } = await res.json();
+
+        const tbody = document.getElementById('adminTransactionsTableBody');
+        tbody.innerHTML = transactions.map(t => `
+          <tr>
+            <td><code>${t.tx_code}</code></td>
+            <td><strong>${t.client_name}</strong></td>
+            <td>${t.type}</td>
+            <td>${t.asset_class || '-'}</td>
+            <td><strong style="color:var(--accent-gold-light);">$${Number(t.amount).toLocaleString()}</strong></td>
+            <td>${t.date}</td>
+            <td><span class="status-badge ${t.status.toLowerCase()}">${t.status}</span></td>
+            <td>
+              ${t.status === 'Pending' ? `
+                <button class="button small emerald" onclick="updateTxStatus(${t.id}, 'Completed')" style="padding:0.25rem 0.6rem; font-size:0.75rem;">
+                  <i class="fa-solid fa-check"></i> Approve
+                </button>
+              ` : `<span style="font-size:0.8rem; color:var(--text-muted);"><i class="fa-solid fa-circle-check"></i> Settled</span>`}
+            </td>
+          </tr>
+        `).join('');
+      } catch (e) {
+        console.error('Transactions load error:', e);
+      }
+    }
+
+    async function updateTxStatus(id, status) {
+      try {
+        const res = await fetch(`/api/admin/transactions/${id}/status`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getAdminToken()}`
+          },
+          body: JSON.stringify({ status })
+        });
+        if (res.ok) {
+          showToast(`Transaction marked ${status}`, 'success');
+          loadTransactions();
+          loadMetrics();
+        }
+      } catch (e) {
+        showToast('Error updating status', 'error');
+      }
+    }
+    window.updateTxStatus = updateTxStatus;
+
+    async function loadInquiries() {
+      try {
+        const res = await fetch('/api/admin/inquiries', {
+          headers: { 'Authorization': `Bearer ${getAdminToken()}` }
+        });
+        if (!res.ok) return;
+        const { inquiries } = await res.json();
+
+        const newCount = inquiries.filter(i => i.status === 'New').length;
+        document.getElementById('navInquiriesLabel').innerHTML = `Inquiries & Leads ${newCount > 0 ? `<span style="background:var(--accent-gold); color:#000; font-size:0.7rem; padding:0.1rem 0.4rem; border-radius:10px; font-weight:800; margin-left:4px;">${newCount}</span>` : ''}`;
+
+        const tbody = document.getElementById('adminInquiriesTableBody');
+        if (!inquiries.length) {
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2rem; color:var(--text-muted);">No inbound inquiries yet.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = inquiries.map(i => `
+          <tr>
+            <td>${i.created_at ? i.created_at.split(' ')[0] : 'Today'}</td>
+            <td><strong style="color:#fff;">${i.name}</strong></td>
+            <td>${i.email}<br><span style="font-size:0.8rem; color:var(--text-muted);">${i.phone || '-'}</span></td>
+            <td><span class="status-badge in-review">${i.service_interest || 'General'}</span></td>
+            <td style="max-width:280px; font-size:0.85rem; color:var(--text-secondary);">${i.message}</td>
+            <td>
+              <select onchange="updateInquiryStatus(${i.id}, this.value)" style="padding:0.3rem 0.6rem; font-size:0.8rem; background:rgba(13,23,46,0.8); border:1px solid var(--border-light); border-radius:6px; color:#fff;">
+                <option value="New" ${i.status === 'New' ? 'selected' : ''}>New</option>
+                <option value="In Review" ${i.status === 'In Review' ? 'selected' : ''}>In Review</option>
+                <option value="Contacted" ${i.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
+                <option value="Resolved" ${i.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
+              </select>
+            </td>
+            <td>
+              <button class="action-btn delete" onclick="deleteInquiry(${i.id})" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        `).join('');
+      } catch (e) {
+        console.error('Inquiries fetch error:', e);
+      }
+    }
+
+    async function updateInquiryStatus(id, status) {
+      try {
+        const res = await fetch(`/api/admin/inquiries/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getAdminToken()}`
+          },
+          body: JSON.stringify({ status })
+        });
+        showToast('Inquiry status updated', 'info');
+        loadMetrics();
+      } catch (e) {
+        showToast('Failed to update status', 'error');
+      }
+    }
+    window.updateInquiryStatus = updateInquiryStatus;
+
+    async function deleteInquiry(id) {
+      if (!confirm('Delete this inquiry?')) return;
+      try {
+        const res = await fetch(`/api/admin/inquiries/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${getAdminToken()}` }
+        });
+        showToast('Inquiry removed', 'info');
+        loadInquiries();
+        loadMetrics();
+      } catch (e) {
+        showToast('Failed to delete inquiry', 'error');
+      }
+    }
+    window.deleteInquiry = deleteInquiry;
+
+    function setupAdminNavigation() {
+      const navItems = document.querySelectorAll('.admin-nav-item');
+      const sections = document.querySelectorAll('.admin-section');
+
+      navItems.forEach(item => {
+        item.addEventListener('click', () => {
+          navItems.forEach(i => i.classList.remove('active'));
+          sections.forEach(s => s.classList.remove('active'));
+
+          item.classList.add('active');
+          const target = item.dataset.section + 'Section';
+          const el = document.getElementById(target);
+          if (el) el.classList.add('active');
+        });
+      });
+
+      // Search bar
+      document.getElementById('clientSearchInput')?.addEventListener('input', (e) => {
+        loadClients(e.target.value);
+      });
+
+      // Quick actions
+      document.getElementById('viewInquiriesFastBtn')?.addEventListener('click', () => {
+        document.querySelector('[data-section="inquiries"]')?.click();
+      });
+    }
+
+    function setupAdminModals() {
+      // Add Client Modal
+      const clientModal = document.getElementById('addClientModal');
+      const openClientBtns = [document.getElementById('openAddClientModalBtn'), document.getElementById('quickAddClientBtn')];
+      openClientBtns.forEach(btn => btn?.addEventListener('click', () => clientModal.classList.add('open')));
+      document.getElementById('closeAddClientModal')?.addEventListener('click', () => clientModal.classList.remove('open'));
+
+      document.getElementById('addClientForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const full_name = document.getElementById('newClientName').value;
+        const email = document.getElementById('newClientEmail').value;
+        const phone = document.getElementById('newClientPhone').value;
+        const initial_investment = document.getElementById('newClientDeposit').value;
+        const risk_profile = document.getElementById('newClientRisk').value;
+
+        try {
+          const res = await fetch('/api/admin/clients', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${getAdminToken()}`
+            },
+            body: JSON.stringify({ full_name, email, phone, initial_investment, risk_profile })
+          });
+          const data = await res.json();
+          if (res.ok) {
+            showToast(data.message || 'Client successfully added', 'success');
+            clientModal.classList.remove('open');
+            document.getElementById('addClientForm').reset();
+            loadAllAdminData();
+          } else {
+            showToast(data.error || 'Failed to add client', 'error');
+          }
+        } catch (err) {
+          showToast('Network error adding client', 'error');
+        }
+      });
+
+      // Add Holding Modal
+      const holdingModal = document.getElementById('addHoldingModal');
+      const openHoldingBtns = [document.getElementById('openNewHoldingModalBtn'), document.getElementById('openAddHoldingBtn')];
+      openHoldingBtns.forEach(btn => btn?.addEventListener('click', () => holdingModal.classList.add('open')));
+      document.getElementById('closeAddHoldingModal')?.addEventListener('click', () => holdingModal.classList.remove('open'));
+
+      document.getElementById('addHoldingForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const user_id = document.getElementById('holdingClientSelect').value;
+        const asset_class = document.getElementById('holdingAssetClass').value;
+        const holding_name = document.getElementById('holdingName').value;
+        const current_value = document.getElementById('holdingValue').value;
+        const allocation_pct = document.getElementById('holdingAlloc').value;
+        const performance_pct = document.getElementById('holdingPerf').value;
+
+        try {
+          const res = await fetch('/api/admin/portfolios', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${getAdminToken()}`
+            },
+            body: JSON.stringify({ user_id, asset_class, holding_name, current_value, allocation_pct, performance_pct })
+          });
+          if (res.ok) {
+            showToast('Portfolio position committed', 'success');
+            holdingModal.classList.remove('open');
+            document.getElementById('addHoldingForm').reset();
+            loadPortfolios();
+            loadMetrics();
+          } else {
+            const err = await res.json();
+            showToast(err.error || 'Failed to add position', 'error');
+          }
+        } catch (err) {
+          showToast('Error recording holding', 'error');
+        }
+      });
+
+      // Add Transaction Modal
+      const txModal = document.getElementById('addTxModal');
+      const openTxBtns = [document.getElementById('openNewTxModalBtn'), document.getElementById('openAddTxBtn')];
+      openTxBtns.forEach(btn => btn?.addEventListener('click', () => txModal.classList.add('open')));
+      document.getElementById('closeAddTxModal')?.addEventListener('click', () => txModal.classList.remove('open'));
+
+      document.getElementById('addTxForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const user_id = document.getElementById('txClientSelect').value;
+        const type = document.getElementById('txType').value;
+        const asset_class = document.getElementById('txAsset').value;
+        const amount = document.getElementById('txAmount').value;
+        const status = document.getElementById('txStatus').value;
+        const description = document.getElementById('txDesc').value;
+
+        try {
+          const res = await fetch('/api/admin/transactions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${getAdminToken()}`
+            },
+            body: JSON.stringify({ user_id, type, asset_class, amount, status, description })
+          });
+          if (res.ok) {
+            showToast('Transaction recorded', 'success');
+            txModal.classList.remove('open');
+            document.getElementById('addTxForm').reset();
+            loadTransactions();
+            loadMetrics();
+          }
+        } catch (err) {
+          showToast('Error recording transaction', 'error');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

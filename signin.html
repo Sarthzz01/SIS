@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Sign In & Portal | SIS</title>
+  <meta name="description" content="Sign in or register for the SIS wealth management and portfolio portal.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-wrapper" href="index.html">
+        <img src="logo.png" alt="SIS logo">
+        <div class="brand-info">
+          <span class="brand-name">SIS</span>
+          <span class="brand-tagline">Sukhmira Investment Services</span>
+        </div>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="signin-section">
+      <div class="container">
+        <div class="signin-wrapper">
+          <div class="signin-card">
+            <!-- Auth Mode Switch Tabs -->
+            <div class="signin-tabs">
+              <button class="signin-tab-btn active" id="tabSignInBtn">Sign In</button>
+              <button class="signin-tab-btn" id="tabRegisterBtn">Create Client Account</button>
+            </div>
+
+            <!-- Sign In Form -->
+            <div id="signInContainer">
+              <span class="eyebrow"><i class="fa-solid fa-lock"></i> Secure Gateway</span>
+              <h1>Account Sign In</h1>
+              <p class="signin-subtitle">Unified secure portal. Enter your credentials to access your dashboard.</p>
+              
+              <form class="signin-form" id="clientSignInForm">
+                <div class="form-group">
+                  <label for="loginEmail">Email Address or Username</label>
+                  <input 
+                    type="text" 
+                    id="loginEmail" 
+                    placeholder="e.g. name@domain.com or admin" 
+                    value="john.anderson@email.com"
+                    required
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="loginPassword">Password</label>
+                  <input 
+                    type="password" 
+                    id="loginPassword" 
+                    placeholder="••••••••" 
+                    value="password123"
+                    required
+                  >
+                </div>
+
+                <div class="form-status error" id="signInError"></div>
+
+                <button type="submit" class="button primary" style="width: 100%; margin-top: 0.5rem;">
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In to Account
+                </button>
+              </form>
+
+              <!-- Quick Demo Fills -->
+              <div class="admin-demo-info" style="margin-top: 1.5rem;">
+                <p><strong>Quick Demo Testing Credentials:</strong></p>
+                <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
+                  <button type="button" class="button small secondary" id="fillJohnBtn" style="font-size:0.78rem;">
+                    <i class="fa-solid fa-user"></i> Fill Client: John Anderson
+                  </button>
+                  <button type="button" class="button small secondary" id="fillSarahBtn" style="font-size:0.78rem;">
+                    <i class="fa-solid fa-user"></i> Fill Client: Sarah Mitchell
+                  </button>
+                  <button type="button" class="button small secondary" id="fillAdminBtn" style="font-size:0.78rem;">
+                    <i class="fa-solid fa-shield"></i> Fill Admin (admin@sis.com)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerContainer" style="display: none;">
+              <span class="eyebrow"><i class="fa-solid fa-user-plus"></i> Institutional Onboarding</span>
+              <h1>Open An Account</h1>
+              <p class="signin-subtitle">Partner with SIS for managed wealth and fiduciary planning.</p>
+
+              <form class="signin-form" id="clientRegisterForm">
+                <div class="form-group">
+                  <label for="regFullName">Legal Full Name</label>
+                  <input type="text" id="regFullName" placeholder="e.g. Alexandra Vance" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="regEmail">Email Address</label>
+                  <input type="email" id="regEmail" placeholder="e.g. alexandra@vanceholdings.com" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="regPhone">Phone Number</label>
+                  <input type="tel" id="regPhone" placeholder="(555) 123-4567">
+                </div>
+
+                <div class="form-group">
+                  <label for="regRisk">Investment Profile</label>
+                  <select id="regRisk">
+                    <option value="Aggressive Growth">Aggressive Growth (High Equity)</option>
+                    <option value="Moderate Growth" selected>Moderate Growth (Balanced)</option>
+                    <option value="Capital Preservation">Capital Preservation (Defensive)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="regDeposit">Initial Portfolio Allocation ($ USD)</label>
+                  <input type="number" id="regDeposit" min="10000" step="5000" value="50000" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="regPassword">Account Password</label>
+                  <input type="password" id="regPassword" placeholder="Minimum 6 characters" required>
+                </div>
+
+                <div class="form-status error" id="registerError"></div>
+
+                <button type="submit" class="button primary" style="width: 100%; margin-top: 0.5rem;">
+                  <i class="fa-solid fa-check"></i> Complete Registration
+                </button>
+              </form>
+            </div>
+
+          </div>
+
+          <!-- Benefits Card -->
+          <div class="signin-benefits">
+            <h2>The SIS Advantage</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary);">
+              Exclusive institutional tools designed to protect and amplify wealth across market cycles.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div style="display: flex; gap: 1.2rem; align-items: flex-start;">
+                <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: var(--accent-emerald-bg); color: var(--accent-emerald); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                  <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div>
+                  <h3 style="font-size: 1.1rem; color: #fff;">Daily Mark-to-Market Valuation</h3>
+                  <p style="font-size: 0.9rem;">Real-time performance monitoring across Equities, Fixed Income, and Alternatives.</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 1.2rem; align-items: flex-start;">
+                <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(212, 175, 55, 0.12); color: var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <h3 style="font-size: 1.1rem; color: #fff;">Fiduciary Risk Management</h3>
+                  <p style="font-size: 0.9rem;">Hedging models and disciplined asset allocation mapped directly to your risk profile.</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 1.2rem; align-items: flex-start;">
+                <div style="width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(56, 189, 248, 0.12); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                  <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div>
+                  <h3 style="font-size: 1.1rem; color: #fff;">Dedicated Wealth Strategist</h3>
+                  <p style="font-size: 0.9rem;">Direct priority access to certified advisors for consultations, rebalancing, and tax efficiency.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>&copy; 2026 SIS Sukhmira Investment Services. All rights reserved.</p>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="contact.html" style="font-size: 0.85rem;">Support & Inquiries</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabSignIn = document.getElementById('tabSignInBtn');
+      const tabRegister = document.getElementById('tabRegisterBtn');
+      const signInContainer = document.getElementById('signInContainer');
+      const registerContainer = document.getElementById('registerContainer');
+
+      tabSignIn?.addEventListener('click', () => {
+        tabSignIn.classList.add('active');
+        tabRegister.classList.remove('active');
+        signInContainer.style.display = 'block';
+        registerContainer.style.display = 'none';
+      });
+
+      tabRegister?.addEventListener('click', () => {
+        tabRegister.classList.add('active');
+        tabSignIn.classList.remove('active');
+        signInContainer.style.display = 'none';
+        registerContainer.style.display = 'block';
+      });
+
+      // Quick Fill Buttons
+      document.getElementById('fillJohnBtn')?.addEventListener('click', () => {
+        document.getElementById('loginEmail').value = 'john.anderson@email.com';
+        document.getElementById('loginPassword').value = 'password123';
+      });
+
+      document.getElementById('fillSarahBtn')?.addEventListener('click', () => {
+        document.getElementById('loginEmail').value = 'sarah.mitchell@email.com';
+        document.getElementById('loginPassword').value = 'password123';
+      });
+
+      document.getElementById('fillAdminBtn')?.addEventListener('click', () => {
+        document.getElementById('loginEmail').value = 'admin';
+        document.getElementById('loginPassword').value = 'password123';
+      });
+
+      // Sign In Form Submit
+      const signInForm = document.getElementById('clientSignInForm');
+      const signInError = document.getElementById('signInError');
+
+      signInForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        signInError.style.display = 'none';
+
+        const identifier = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        try {
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identifier, password })
+          });
+
+          const data = await res.json();
+          if (res.ok) {
+            localStorage.setItem('sis_token', data.token);
+            localStorage.setItem('sis_user', JSON.stringify(data.user));
+            showToast('Authentication successful', 'success');
+
+            setTimeout(() => {
+              if (data.user.role === 'admin') {
+                window.location.href = 'admin.html';
+              } else {
+                window.location.href = 'client-dashboard.html';
+              }
+            }, 500);
+          } else {
+            signInError.textContent = data.error || 'Invalid credentials';
+            signInError.style.display = 'block';
+          }
+        } catch (err) {
+          signInError.textContent = 'Server connection error. Please try again.';
+          signInError.style.display = 'block';
+        }
+      });
+
+      // Registration Form Submit
+      const regForm = document.getElementById('clientRegisterForm');
+      const regError = document.getElementById('registerError');
+
+      regForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        regError.style.display = 'none';
+
+        const full_name = document.getElementById('regFullName').value;
+        const email = document.getElementById('regEmail').value;
+        const phone = document.getElementById('regPhone').value;
+        const risk_profile = document.getElementById('regRisk').value;
+        const initial_deposit = document.getElementById('regDeposit').value;
+        const password = document.getElementById('regPassword').value;
+
+        try {
+          const res = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ full_name, email, phone, risk_profile, initial_deposit, password })
+          });
+
+          const data = await res.json();
+          if (res.ok) {
+            localStorage.setItem('sis_token', data.token);
+            localStorage.setItem('sis_user', JSON.stringify(data.user));
+            showToast('Account registered successfully! Welcome to SIS.', 'success');
+
+            setTimeout(() => {
+              window.location.href = 'client-dashboard.html';
+            }, 700);
+          } else {
+            regError.textContent = data.error || 'Failed to create account';
+            regError.style.display = 'block';
+          }
+        } catch (err) {
+          regError.textContent = 'Server connection error';
+          regError.style.display = 'block';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
