@@ -50,7 +50,6 @@ This web application combines a high-performance, modern public-facing portal wi
 | **Fixed Deposits (FDs)** | Capital Preservation | High-yielding AAA-rated corporate deposits and scheduled bank FDs offering up to 8.75% p.a. |
 | **Comprehensive Insurance** | Risk Safeguard | Term life insurance, family floater health covers, and critical illness safeguards. |
 | **Unlisted Pre-IPO Shares** | High-Growth Equity | Access to pre-IPO enterprises, technology disruptors, and unicorn equities before listing. |
-| **54 EC Capital Gain Bonds** | Tax Exemption | 100% long-term capital gains tax exemption on real estate sales under Sec 54EC (REC, NHAI, PFC). |
 
 ---
 
@@ -122,7 +121,7 @@ SIS_1/
 ├── client-dashboard.html      # Investor Portfolio & Holdings Management Portal
 ├── contact.html               # Inquiry form, location details & interactive map
 ├── index.html                 # Homepage with hero, services, calculator & FAQs
-├── services.html              # Comprehensive analysis of all 6 financial products
+├── services.html              # Comprehensive analysis of all 5 financial products
 ├── signin.html                # Unified secure portal login (Client & Admin)
 ├── db.js                      # Database schema, migrations & Indian market seed data
 ├── server.js                  # Express API server, routes & auth middleware

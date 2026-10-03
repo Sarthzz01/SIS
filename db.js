@@ -35,7 +35,7 @@ function initSchema() {
     CREATE TABLE IF NOT EXISTS portfolios (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-      asset_class TEXT NOT NULL, -- 'Mutual Funds', 'Bonds', 'Fixed Deposit', 'Unlisted Shares', 'Insurance', '54 EC Bonds'
+      asset_class TEXT NOT NULL, -- 'Mutual Funds', 'Bonds', 'Fixed Deposit', 'Unlisted Shares', 'Insurance'
       holding_name TEXT NOT NULL,
       allocation_pct REAL NOT NULL,
       current_value REAL NOT NULL,
@@ -175,7 +175,7 @@ function seedData() {
     'Capital Preservation'
   );
 
-  // Insert Portfolios with Indian assets: Mutual Funds, Bonds, Corporate FDs, Unlisted Pre-IPO shares, 54EC Bonds
+  // Insert Portfolios with Indian assets: Mutual Funds, Bonds, Corporate FDs, Unlisted Pre-IPO shares
   const insertPortfolio = db.prepare(`
     INSERT INTO portfolios (user_id, asset_class, holding_name, allocation_pct, current_value, invested_value, performance_pct)
     VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -189,7 +189,7 @@ function seedData() {
   // Portfolios for Priya Patel (₹68,00,000)
   insertPortfolio.run(client2.lastInsertRowid, 'Mutual Funds', 'SBI Large & Midcap + ICICI Pru Bluechip', 50, 3400000, 3050000, 11.48);
   insertPortfolio.run(client2.lastInsertRowid, 'Fixed Deposit', 'Bajaj Finance & Mahindra Finance Corporate FDs (8.15%)', 25, 1700000, 1650000, 3.03);
-  insertPortfolio.run(client2.lastInsertRowid, '54 EC Bonds', 'REC & NHAI Capital Gain Tax Exemption Bonds', 25, 1700000, 1700000, 5.25);
+  insertPortfolio.run(client2.lastInsertRowid, 'Bonds', 'Sovereign Gold Bonds & PSU Debentures', 25, 1700000, 1660000, 4.8);
 
   // Portfolios for Vikram Deshmukh (₹52,00,000)
   insertPortfolio.run(client3.lastInsertRowid, 'Mutual Funds', 'Mirae Asset Large Cap & Parag Parikh Flexi Cap', 45, 2340000, 2100000, 11.43);
@@ -197,7 +197,7 @@ function seedData() {
   insertPortfolio.run(client3.lastInsertRowid, 'Fixed Deposit', 'Senior Citizen High-Yield Bank FDs', 25, 1300000, 1280000, 1.56);
 
   // Portfolios for Sunita Mehta (₹75,00,000)
-  insertPortfolio.run(client4.lastInsertRowid, '54 EC Bonds', 'REC Ltd Section 54EC Capital Gains Exemption', 40, 3000000, 3000000, 5.25);
+  insertPortfolio.run(client4.lastInsertRowid, 'Bonds', 'Sovereign Gold Bonds & PSU Tax-Free Bonds', 40, 3000000, 2900000, 5.25);
   insertPortfolio.run(client4.lastInsertRowid, 'Fixed Deposit', 'HDFC Bank & Corporate Fixed Deposits', 35, 2625000, 2550000, 2.94);
   insertPortfolio.run(client4.lastInsertRowid, 'Mutual Funds', 'Balanced Advantage & Hybrid Conservative Funds', 25, 1875000, 1750000, 7.14);
 
@@ -208,7 +208,7 @@ function seedData() {
   `);
 
   insertTx.run('TXN-8801', client1.lastInsertRowid, 'SIP / Deposit', 'Mutual Funds', 50000, '2026-03-15', 'Completed', 'Monthly SIP in HDFC Flexi Cap Fund');
-  insertTx.run('TXN-8802', client2.lastInsertRowid, 'Buy', '54 EC Bonds', 1500000, '2026-03-14', 'Completed', 'REC Capital Gain Bond Subscription under Sec 54EC');
+  insertTx.run('TXN-8802', client2.lastInsertRowid, 'Buy', 'Bonds', 1500000, '2026-03-14', 'Completed', 'Sovereign Gold Bond Subscription Series IV');
   insertTx.run('TXN-8803', client3.lastInsertRowid, 'Buy', 'Unlisted Shares', 250000, '2026-03-12', 'Completed', 'Pre-IPO shares allotment credited to Demat');
   insertTx.run('TXN-8804', client4.lastInsertRowid, 'Interest / Dividend', 'Fixed Deposit', 38500, '2026-03-10', 'Completed', 'Quarterly interest payout credited to bank');
 
@@ -222,8 +222,8 @@ function seedData() {
     'Anil Kulkarni',
     'anil.kulkarni@gmail.com',
     '+91 9152579597',
-    '54 EC Capital Gain Bonds',
-    'Recently sold a commercial property in Airoli. Need guidance to invest ₹40 Lakhs into 54EC Bonds (REC/NHAI) to claim long-term capital gain tax exemption.',
+    'Bonds & Debentures',
+    'Looking to invest ₹40 Lakhs into Sovereign Gold Bonds and AAA-rated PSU bonds for capital safety and steady returns.',
     'New',
     '2026-03-24 10:15:00'
   );

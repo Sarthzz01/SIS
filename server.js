@@ -164,7 +164,7 @@ app.post('/api/auth/register', (req, res) => {
     const altVal = deposit * 0.2;
 
     insertPortfolio.run(userId, 'Mutual Funds', 'Diversified Multi-Cap Mutual Fund Portfolio', 50, eqVal, eqVal, 3.4);
-    insertPortfolio.run(userId, 'Bonds', 'Sovereign Gold Bonds & 54EC Capital Gain Securities', 30, fiVal, fiVal, 1.2);
+    insertPortfolio.run(userId, 'Bonds', 'Sovereign Gold Bonds & Government Securities', 30, fiVal, fiVal, 1.2);
     insertPortfolio.run(userId, 'Fixed Deposit', 'Corporate & Bank High-Yield Fixed Deposits', 20, altVal, altVal, 2.1);
 
     // Initial deposit transaction
@@ -256,8 +256,7 @@ app.get('/api/company-info', (req, res) => {
       'Bonds',
       'Fixed Deposit',
       'Insurance',
-      'Unlisted Shares',
-      '54 EC Bonds'
+      'Unlisted Shares'
     ]
   });
 });
